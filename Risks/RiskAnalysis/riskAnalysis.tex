@@ -23,8 +23,34 @@
 \usetikzlibrary{arrows}
 
 \renewcommand{\rmdefault}{ptm}
-
+\title{Analyse de risque}
+\author{Romain BOYRIE}
+\date{$10$ Juin $2022$} 
 \begin{document}
+
+\maketitle
+
+\setcounter{tocdepth}{2} 
+
+\tableofcontents 
+
+\listoffigures
+
+\listoftables 
+
+\newpage
+\section{Plan de prévention}
+Avec ce plan nous pourrons prévoir les actions à mettre en œuvre, d’après leur probabilité de réalisation et leur gravité.
+
+Une personne se trouve désignée en qualité du responsable de l’exécution de l’action. De sorte qu’un évènement peut entraîner une action de la part de cette personne responsable, pour agir soit en anticipation, soit en protection.
+
+Réduire la criticité d’un risque est très rarement gratuit, mais les actions sont des leviers permettant d’agir sur les causes, tout autant que sur le périmètre fonctionnel.
+
+De plus, les actions vont pourvoir un moyen organisationnel et responsabilisant.
+
+Enfin, malgré leurs coûts, les actions peuvent permettre d’agir favorablement sur les ressources et sur les délais de livraison. 
+
+Voici donc sur la page suivant le tableau \ref{plan_de_prevention}, qui détaille l’ensemble des risques probables du projet que nous avons identifiés préalablement dans le tableau \ref{identifier_les_risques}.
 
 %Feuille de plan de prévention des risques
 \begin{landscape}
@@ -40,10 +66,12 @@
 %ajouter autant de ligne que nécessaire
 \hline
 \end{tabular}
+\label{plan_de_prevention}
 \end{table}
 \end{landscape}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Périmètre fonctionnel}
 %Périmètre fonctionnel "Poristik"
 \begin{landscape}
 \begin{table}[H]
@@ -64,6 +92,8 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Identification des risques "génériques"}
+
 %Identification des risques "génériques"
 \begin{landscape}
 \begin{table}[H]
@@ -90,10 +120,13 @@ DIMENSION 7\cellcolor{blue!70} & \bf Le périmètre projet a-t-il été établi 
 
 \hline
 \end{tabular}
+\label{identifier_les_risques}
 \end{table}
 \end{landscape}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Description des risques}
 %Tableau de description des risques
 \begin{landscape}
 \begin{table}[H]
@@ -213,6 +246,9 @@ Réalisation d’un produit incohérent avec les attentes et les besoins & Absen
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Analyse des risques du projet Poristik}
+\newpage
+\begin{figure}
+\caption{Diagramme Kiviat des Risques}
 \begin{tikzpicture}
 \tkzKiviatDiagram[scale=1,label distance=.5cm,
         radial  = 5,
@@ -225,5 +261,48 @@ Réalisation d’un produit incohérent avec les attentes et les besoins & Absen
 \tkzKiviatLine[ultra thick,mark=ball,
                  mark size=4pt,color=Maroon](2,3.75,1,1.5,2,4)    
 \tkzKiviatGrad[prefix=,unity=1,suffix=](1)  
-\end{tikzpicture}
+\end{tikzpicture}	
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Backlog}
+%Périmètre fonctionnel "Poristik"
+\begin{landscape}
+\begin{table}[H]
+\scriptsize
+\caption{Backlog}
+\begin{tabular}{p{3cm}p{3cm}p{4cm}p{4cm}p{4cm}p{4cm}}
+\hline  Titre	\cellcolor{gray!25}&En tant que \cellcolor{gray!25}& Je veux\dots\cellcolor{gray!25}&  \dots afin de\dots\cellcolor{gray!25}& \bf Pondération\cellcolor{gray!25} & \bf Données nécessaires\cellcolor{gray!25} \\
+\hline  Connexion via une adresse mail& 
+Utilisateur de l'application &
+  pouvoir me connecter à mon compte sur l'application mobile en utilisant une adresse mail& je peux voir les informations me concernant (infos personnelles, photos prises, articles suggérés, ...)& 
+  A définir en relatif par rapport aux autres user stories en donnant un chiffre parmi : 1, 3, 5, 8, 13, 20, 50, 100.&
+  \begin{itemize}
+  \item adresse mail utilisateur
+  \item mot de passe 
+   \end{itemize}\\
+\hline   Conserver le mot de passe haché& Administrateur de Base de données & Ne pas conserver le mot de passe en clair & 
+Réduire le risque de vol d’identité en cas de piratage  & 
+L’utilisation d’un salage et d’une graine lors du hachage augmente la sécurité & mot de passe, sel, graine\\
+\hline   Flouter les visages des utilisateurs & Data Scientist / Utilisateur de l’application & Ne pas conserver l’image pouvant servir à la reconnaissance faciale & Ne pas utiliser cette données, car inutile pour le traitement & Les données d’entraînement peuvent être transformer identiquement & Récolte d’éléments vestimentaires avec visage flouté\\
+\hline   Création de recommandation d’achat à partir des cliques & UXDesigner / Utilisateur de l’application & Conserver des historiques de navigations pour faire du neuroprofilage  & Proposer les articles susceptibles de l’intéresser sur la base de son historique de navigation.  & Le client a un droit de sélectionner ce qu’il veut que la plateforme conserve comme données d’historique de navigation & L’historique de navigation, relié au pseudo du client. \\
+\hline   Création d’un panier d’achat & UXDesigner / Utilisateur de l’application & Conserver une liste d’achats souhaités n & Valider son panier après la phase shopping, au moment du passage en caisse & Ce sont des données peu sensible, modifiable à tout moment par l’utilisateur, mais conserver de manière illimité, comme un service pour l’utilisateur. & Sélection d’article lié au pseudo de l’utilisateur \\
+\hline   Création d’une liste d’envie & UXDesigner / Utilisateur de l’application & Conserver une liste d’envie & Garder des idées d’achats pour une occasion à horizon plus lointaine & Ce sont des données peu sensible, modifiable à tout moment par l’utilisateur, mais conserver de manière illimité, comme un service pour l’utilisateur. & Sélection d’article lié au pseudo de l’utilisateur \\
+\hline   Système de notation des prédictions & Data Scientist / Utilisateur de l’application & L’utilisateur donne une note ou un like/dislike ou un swipe sur les vêtements proposés & Améliorer les prédictions en connaissant mieux les goûts des utilisateurs (Matrice Users/Items) & Durée de stockage définie par l’utilisateur sur 0, 1, 2 ou 3 ans. & Pseudo utilisateur, Articles, Notes \\
+\hline   Système d’association de produit & Data Scientist / Utilisateur de l’application & L’utilisateur reçoit des recommandations d’articles similaire à ceux qui sont prédits & Augmenter le nombre d’articles similaire (Matrice Items/Items) & La base de données des articles en vente doit pouvoir être catégorisé en hiérarchie de produit. & Les informations sur les produits, photos, descriptifs. \\
+\hline   Création d’une interface & Web Design / Utilisateur de l’application & Une interface intuitive avec une charte graphique de la marque & Offrir une bonne expérience utilisateur & Les cookies doivent être autorisées par l’utilisateur & Cookies, IP, Browser fingerprints, stockés maximum 1 an si l’utilisateur autorise les CGU. \\
+\hline   Détection d’une connexion depuis un nouvel appareil & Security / Utilisateur de l’application & Sécuriser l’application pour l’utilisateur & Éviter / Alerter en cas de piratage & Les données ne concerne pas l’identité de la personne directement mais les supports numériques utilisés pour se connecter. & Les données conservés sont l’adresse Mac de la machine, le nom du système OS, le type de navigateur web \\
+
+
+%ajouter autant de ligne que nécessaire.
+
+\hline
+\end{tabular}
+\label{backlog}
+\end{table}
+\end{landscape}
+
+
+
 \end{document}

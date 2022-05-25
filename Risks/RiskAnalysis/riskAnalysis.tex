@@ -72,20 +72,93 @@ Voici donc sur la page suivant le tableau \ref{plan_de_prevention}, qui détaill
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Périmètre fonctionnel}
+C’est grâce à cette énumération des risques résidant entre les objectifs et le résultat que nous avons élaboré un tableau de périmètre fonctionnel.
+Par sa structure, ce tableau permet de se focaliser sur les dangers autour de 3 grands thèmes :
+\begin{enumerate}
+	\item Réalisations
+	\item Estimation de la charge
+	\item Compétences nécessaires
+\end{enumerate}
+
+De plus, il demeure une clef d’appréciation des éléments que l’on dénomme sous l’acronyme SWOT, lesquels sont :
+\begin{itemize}
+	\item Opportunités et menaces
+	\begin{itemize}
+		\item Risques externes
+	\end{itemize}
+	\item Forces et Faiblesses
+	\begin{itemize}
+		\item Risques internes
+	\end{itemize}
+\end{itemize}
+
+L’ensemble des éléments de compréhension du périmètre des fonctionnalités est répertorié dans le tableau \ref{functional_perimeter} de la page suivante.
+
+Plus encore que pour les 7 dimensions du risque du tableau \ref{identifier_les_risques}, nous avons eu des retours intéressants par les analyses suivantes :
+\begin{itemize}
+	\item QQOQCCP
+	\item Arbre à objectifs
+			\begin{itemize}
+				\item Objectif général
+				\item Objectif secondaires
+				\item Objectif opérationnels
+				\item Fonctionnalités clés
+			\end{itemize}
+\end{itemize}
 %Périmètre fonctionnel "Poristik"
 \begin{landscape}
 \begin{table}[H]
+\center
+\resizebox{25cm}{!}{
 \scriptsize
-\caption{Périmètre fonctionnel}
 \begin{tabular}{p{1cm}p{2cm}p{3cm}p{10cm}p{1.75cm}p{1.5cm}p{1.25cm}p{.5cm}p{.5cm}}
 \hline  Ref.	\cellcolor{gray!25}&Type \cellcolor{gray!25}& Nom\cellcolor{gray!25}& Descriptif \cellcolor{gray!25}& \bf Accès identifié \cellcolor{gray!25} & \bf Complexité \cellcolor{gray!25} & \bf Priorité \cellcolor{gray!25} & \bf V1 \cellcolor{gray!25} & \bf (V2) \cellcolor{gray!25}\\
 \hline  	\bf A\cellcolor{gray!50}& \bf Écran\cellcolor{gray!50}& \bf Intro\cellcolor{gray!50}& \bf Écran de lancement de l’application\cellcolor{gray!50}& \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50}\\
-\hline  	\bf A1& Fonctionnalité & Vidéo d’accueil & Vidéo démarrant automatiquement au lancement de l’application &  & 1 &  2 &  & \bf X\\
-
+\hline  	\bf A1& Fonctionnalité & UX & Demander l’autorisation de démarrer la vidéo et le son &  & 1 &  2 &  & \bf X\\
+\hline  	\bf A2& Fonctionnalité & Responsive & Adaptation à toutes les tailles d’écran &  & 3 &  5 & \bf X & \\
+\hline  	\bf A3& Fonctionnalité & Web Design & Couleur, logo et design appartenant à la charte graphique &  & 3 &  4 & \bf X & \\
+\hline  	\bf A4& Fonctionnalité & Security & Bouton de création, login et interface de connexion sécurisée, à son compte utilisateur & X & 5 &  4 &  & \bf X\\
+\hline  	\bf A5& Fonctionnalité & Https & Connexion chiffrée pour les visiteurs &  & 5 &  4 & \bf X & \\
+\hline  	\bf A6& Fonctionnalité & Cookie & Demande de l’accord pour le stockage de données personnelles (traitements - RGPD) & X & 2 & 5 &  & \bf X \\
+\hline  	\bf B\cellcolor{gray!50}& \bf CRUD\cellcolor{gray!50}& \bf Parameters\cellcolor{gray!50}& \bf Interface de configuration\cellcolor{gray!50}& \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50}\\
+\hline  	\bf B1& Fonctionnalité & Parameters & Gestion des options du comportement de l’application & X & 5 &  4 & \bf X & \\
+\hline  	\bf B2& Fonctionnalité & Changement & Modification des informations personnelles & X & 5 &  4 & \bf X & \\
+\hline  	\bf B3& Fonctionnalité & Notation & Sélection des historiques de navigation retenus par le système de recommandation & X & 5 & 4 &  & \bf X \\
+\hline  	\bf B4& Fonctionnalité & Hash/Salage & Stockage des mots de passe hacher & X & 1 & 4 &  & \bf X \\
+\hline  	\bf C\cellcolor{gray!50}& \bf Accessibility\cellcolor{gray!50}& \bf W3C\cellcolor{gray!50}& \bf Adaptation aux handicaps\cellcolor{gray!50}& \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50}\\
+\hline  	\bf C1& Fonctionnalité & Mal-entendant & Écriture des sous-titres des vidéos et descriptif des scènes &  & 1 &  3 &  & \bf X\\
+\hline  	\bf C2& Fonctionnalité & Déficience visuelle & Mode contraste élevé &  & 1 &  4 &  & \bf X \\
+\hline  	\bf C3& Fonctionnalité & Non-voyant & Description optionnelle des médias &  & 1 &  3 & \bf X & \\
+\hline  	\bf D\cellcolor{gray!50}& \bf Translation\cellcolor{gray!50}& \bf Living in EU\cellcolor{gray!50}& \bf Internationalisation\cellcolor{gray!50}& \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50}\\
+\hline  	\bf D1& Fonctionnalité & Export & Gestion du mode multi-nationalité &  & 2 &  2 &  & \bf X \\
+\hline  	\bf D2& Fonctionnalité & Etna & Gestion de la langue Italienne &  & 2 &  5 & \bf X & \\
+\hline  	\bf E\cellcolor{gray!50}& \bf Deep Learning\cellcolor{gray!50}& \bf Open AI \cellcolor{gray!50}& \bf Data Science et IA\cellcolor{gray!50}& \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50}\\
+\hline  	\bf E1& Fonctionnalité & Nettoyage & Préparation des données pour le DL&  & 1 &  5 & \bf X &  \\
+\hline  	\bf E2& Fonctionnalité & EDA & Orienter la lecture des data sur l’écartement des biais présents dans la base de données &  & 5 &  1 & \bf X &  \\
+\hline  	\bf E3& Fonctionnalité & Modélisation & Entraînement du modèle &  & 1 &  5 & \bf X &  \\
+\hline  	\bf E4& Fonctionnalité & Test & Test du modèle &  & 1 &  5 & \bf X &  \\
+\hline  	\bf E5& Fonctionnalité & Interprétation & Interprétation du modèle &  & 3 &  5 &  & \bf X \\
+\hline  	\bf E6& Fonctionnalité & Dev/Ops & Conservation du code sur GitHub & X & 1 &  3 & \bf X & \\
+\hline  	\bf E7& Fonctionnalité & Éthique & Éditer un communiqué sur l’éthique du modèle &  & 3 &  2 &  & \bf X \\
+\hline  	\bf F\cellcolor{gray!50}& \bf UpLoad\cellcolor{gray!50}& \bf Recollect \cellcolor{gray!50}& \bf Unknown Data\cellcolor{gray!50}& \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50}\\
+\hline  	\bf F1& Fonctionnalité & Stockage & Transmission chiffrée et sauvegarde en blob des photos (> 800Ko, <12Mo par photos) & X & 2 & 5 & \bf X &  \\
+\hline  	\bf F2& Fonctionnalité & Table Relationnelle & Transmission (chiffrée) et sauvegarde des noms des photos et de leurs références (stats) & X & 2 & 5 & \bf X &  \\
+\hline  	\bf F3& Fonctionnalité & Resolution & Retouche pics en vue d’utilisation par le modèle (harmonisation de la résolution/format) &  & 2 & 4 & \bf X &  \\
+\hline  	\bf F4& Fonctionnalité & Backup & Duplication de la base de données sur deux régions, au minimum &  & 3 & 3 &  & \bf X \\
+\hline  	\bf G\cellcolor{gray!50}& \bf Deployment\cellcolor{gray!50}& \bf Cloud \cellcolor{gray!50}& \bf Disponibilité du service\cellcolor{gray!50}& \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50}\\
+\hline  	\bf G1& Fonctionnalité & PyTest & Test de Déploiement en Dev/Ops GitHub Action & X & 4 & 5 & \bf X &  \\
+\hline  	\bf G1& Fonctionnalité & Kubernetes & Déploiement en pod avec Kubernetes & X & 4 & 5 & \bf X &  \\
+\hline  	\bf G2& Fonctionnalité & Pods & Connexion des pods d’application et de base de données &  & 3 & 5 & \bf X &  \\
+\hline  	\bf G3& Fonctionnalité & Redondance du service & Déploiement au plus près des clients & X & 1 & 5 &  & \bf X \\
+\hline  	\bf G4& Fonctionnalité & Adaptation & Ajustement du nombre de serveur en fonction du nombre d’utilisateur & X & 2 & 5 & & \bf X \\
+\hline  	\bf G5& Fonctionnalité & Monitoring & Remonté d’alerte au problème à la moindre prédiction, connexion, ou téléversement & X & 2 & 5 & & \bf X \\
 %ajouter autant de ligne que nécessaire.
 
 \hline
 \end{tabular}
+}
+\caption{Périmètre fonctionnel}
+\label{functional_perimeter}
 \end{table}
 \end{landscape}
 
@@ -96,13 +169,9 @@ Cette partie touche les risques opérationnels du projet. Ceux pour lesquels la 
 \begin{itemize}
 	\item QQOQCCP
 	\item Arbre à objectifs : 
-		\begin{itemize}
-			\item Objectif général
-			\item Objectif secondaires
-			\item Objectif opérationnels
-			\item Fonctionnalités clés
-		\end{itemize}
 \end{itemize}
+
+De plus nous avons identifier les zones de danger entre l’objectif et le résultat dans le périmètre fonctionnel du tableau \ref{functional_perimeter}. 
 
 Pour aller plus loin, nous avons diffracté les risques dans le tableau \ref{identifier_les_risques} en 7 dimensions :
 \begin{enumerate}

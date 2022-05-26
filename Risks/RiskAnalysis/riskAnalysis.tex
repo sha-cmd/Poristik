@@ -273,7 +273,6 @@ Nous nous sommes astreint à les détailler selon leurs origines, leurs déclenc
 \begin{landscape}
 \begin{table}[H]
 \scriptsize
-\caption{Description des risques}
 \begin{tabular}{p{.1cm}p{6,1cm}p{3.5cm}p{6.75cm} p{6.75cm}}
 \hline & Risque identifié & \bf Origine du risque & \bf Déclencheurs envisageables & \bf Conséquences possibles \\
 \hline
@@ -381,6 +380,7 @@ Nous nous sommes astreint à les détailler selon leurs origines, leurs déclenc
 
 \hline
 \end{tabular}
+\caption{Description des risques}
 \end{table}
 \end{landscape}
 
@@ -390,15 +390,16 @@ Nous nous sommes astreint à les détailler selon leurs origines, leurs déclenc
 \begin{table}[H]
 \centering
 \scriptsize
-\caption{Matrice de risque initial}
 \begin{tabular}{|p{2cm}|p{2cm}|p{2cm}| p{2cm} |p{2cm}| p{2cm}|}
 \hline \bf Frequence/ Conséquence & \bf 1-Très Peu Probable & \bf 2-Peu Probable & \bf 3-Occasionnel & \bf 4-Probable & \bf 5-Fréquent\\ [10pt]
-\hline \bf 4-Catastrophique & \cellcolor{yellow!50} & \cellcolor{red!50} & \cellcolor{red!50} & \cellcolor{red!50} &\cellcolor{red!50} \\ [10pt]
-\hline \bf 3-Critique &\cellcolor{green!50} & \cellcolor{yellow!50} & \cellcolor{yellow!50} & \cellcolor{red!50} &\cellcolor{red!50} \\ [10pt]
-\hline \bf 2-Majeur & \cellcolor{green!50} & \cellcolor{green!50} & \cellcolor{yellow!50} &\cellcolor{yellow!50} &\cellcolor{red!50} \\ [10pt]
+\hline \bf 4-Catastrophique &Data Integrity, Misconfiguration\cellcolor{yellow!50} & Data Stealing\cellcolor{red!50} & Authentication, Password\cellcolor{red!50} & Injection\cellcolor{red!50} &\cellcolor{red!50} \\ [10pt]
+\hline \bf 3-Critique &\cellcolor{green!50} & \cellcolor{yellow!50} & \cellcolor{yellow!50} & \cellcolor{red!50} & Memory Management\cellcolor{red!50} \\ [10pt]
+\hline \bf 2-Majeur & \cellcolor{green!50} & \cellcolor{green!50} & Vulnerability\cellcolor{yellow!50} &\cellcolor{yellow!50} &Service Deny\cellcolor{red!50} \\ [10pt]
 \hline \bf 1-Mineur & \cellcolor{green!50} & \cellcolor{green!50} & \cellcolor{green!50} &\cellcolor{yellow!50} &\cellcolor{yellow!50} \\ [10pt]
 \hline
-\end{tabular} \\
+\end{tabular}
+\caption{Matrice de risque initial}
+
 \end{table}
 
  
@@ -408,15 +409,15 @@ Nous nous sommes astreint à les détailler selon leurs origines, leurs déclenc
 \begin{table}[H]
 \centering
 \scriptsize
-\caption{Matrice de risque résiduel}
 \begin{tabular}{|p{2cm}|p{2cm}|p{2cm}| p{2cm} |p{2cm}| p{2cm}|}
 \hline \bf Frequence/ Conséquence & \bf 1-Très Peu Probable & \bf 2-Peu Probable & \bf 3-Occasionnel & \bf 4-Probable & \bf 5-Fréquent\\ [10pt]
-\hline \bf 4-Catastrophique & \cellcolor{yellow!50} & \cellcolor{red!50} & \cellcolor{red!50} & \cellcolor{red!50} &\cellcolor{red!50} \\ [10pt]
-\hline \bf 3-Critique &\cellcolor{green!50} & \cellcolor{yellow!50} & \cellcolor{yellow!50} & \cellcolor{red!50} &\cellcolor{red!50} \\ [10pt]
-\hline \bf 2-Majeur & \cellcolor{green!50} & \cellcolor{green!50} & \cellcolor{yellow!50} &\cellcolor{yellow!50} &\cellcolor{red!50} \\ [10pt]
-\hline \bf 1-Mineur & \cellcolor{green!50} & \cellcolor{green!50} & \cellcolor{green!50} &\cellcolor{yellow!50} &\cellcolor{yellow!50} \\ [10pt]
+\hline \bf 4-Catastrophique & Misconfiguration, Data Integrity, Data Stealing \cellcolor{yellow!50} &\cellcolor{red!50} & \cellcolor{red!50} & \cellcolor{red!50} &\cellcolor{red!50} \\ [10pt]
+\hline \bf 3-Critique &Memory Management, Vulnerability\cellcolor{green!50} & Authentication\cellcolor{yellow!50} & \cellcolor{yellow!50} & \cellcolor{red!50} &\cellcolor{red!50} \\ [10pt]
+\hline \bf 2-Majeur & Password\cellcolor{green!50} & Injection\cellcolor{green!50} & \cellcolor{yellow!50} &\cellcolor{yellow!50} &\cellcolor{red!50} \\ [10pt]
+\hline \bf 1-Mineur & \cellcolor{green!50} & \cellcolor{green!50} & \cellcolor{green!50} &\cellcolor{yellow!50} &Service Deny\cellcolor{yellow!50} \\ [10pt]
 \hline
-\end{tabular} \\
+\end{tabular} 
+\caption{Matrice de risque résiduel}
 \end{table}
 
  
@@ -426,7 +427,6 @@ Nous nous sommes astreint à les détailler selon leurs origines, leurs déclenc
 \begin{table}[H]
 \centering
 %\scriptsize
-\caption{Légende couleur de la matrice de risque}
 \begin{tabular}{|p{2cm}|p{10cm}|}
 \hline \bf Colour & \bf Légende \\
 \hline \cellcolor{red! 50} & Non-Acceptable Réduction de Risk requis \\ [10pt]
@@ -434,6 +434,7 @@ Nous nous sommes astreint à les détailler selon leurs origines, leurs déclenc
 \hline \cellcolor{green! 50} & Acceptable. \\ [10pt]
 \hline
 \end{tabular}
+\caption{Légende couleur de la matrice de risque}
 \end{table}
 
  
@@ -441,7 +442,6 @@ Nous nous sommes astreint à les détailler selon leurs origines, leurs déclenc
 %Probability Classes Legend
 \begin{table}[H]
 \centering
-\caption{Classes de Probabilités}
 \begin{tabular}{ p{2cm} p{3cm} p{8cm}}
 \hline \bf Rang & \bf Classet & \bf Description \\
 \hline 1 & Très peu probable & Une fois tous les 1000 ans ou plus rare \\
@@ -453,6 +453,8 @@ Nous nous sommes astreint à les détailler selon leurs origines, leurs déclenc
 \hline
 
 \end{tabular}
+\caption{Classes de Probabilités}
+
 \end{table}
 
  
@@ -460,7 +462,6 @@ Nous nous sommes astreint à les détailler selon leurs origines, leurs déclenc
 %Severity Classes Legend
 \begin{table}[H]
 \centering
-\caption{Classes de Sévérités}
 \begin{tabular}{ p{2cm} p{3cm} p{8cm}}
 \hline \bf Rang & \bf Classes & \bf Description \\
 
@@ -471,6 +472,7 @@ Nous nous sommes astreint à les détailler selon leurs origines, leurs déclenc
 1 & Mineur & Échec résultant en un dommage mineur du système mais ne causant pas de blessure au personnel, ne soumettant à aucune sorte d’exposition des opérateurs ou du personnel de service, ou ne rejetant aucun produit chimique dans l’environnement. \\
 \hline
 \end{tabular}
+\caption{Classes de Sévérités}
 \end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

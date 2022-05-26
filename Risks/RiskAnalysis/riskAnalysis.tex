@@ -477,22 +477,21 @@ Nous nous sommes astreint à les détailler selon leurs origines, leurs déclenc
 \section{Analyse des risques du projet Poristik}
 \newpage
 \begin{figure}
-\caption{Diagramme Kiviat des Risques}
 \begin{tikzpicture}
 \tkzKiviatDiagram[scale=1,label distance=.5cm,
         radial  = 5,
         gap     = 1,  
-        lattice = 5]{Innovation,Périmètre,Temps,Décision,Budget, Équipe}
+        lattice = 5]{Vulnerability,Injection,Authentication,Data Stealing,Service Deny, Misconfiguration}
 \tkzKiviatLine[thick,color=orange,mark=none,
                fill=orange!20,opacity=.5](5,5,5,5,5,5)
 \tkzKiviatLine[thick,color=orange,
-               fill=white!20,opacity=1](3.5,3.5,3.5,3.5,3.5,3.5) 
+               fill=white!20,opacity=1](3,3,3,3,3,3) 
 \tkzKiviatLine[ultra thick,mark=ball,
-                 mark size=4pt,color=Maroon](2,3.75,1,1.5,2,4)    
+                 mark size=4pt,color=Maroon](1.75,2,3,4,2.5,1.5)    
 \tkzKiviatGrad[prefix=,unity=1,suffix=](1)  
 \end{tikzpicture}	
+\caption{Diagramme Kiviat des Risques}
 \end{figure}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Backlog}

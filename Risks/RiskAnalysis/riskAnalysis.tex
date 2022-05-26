@@ -201,7 +201,7 @@ C’est en pensant à la description du risque par son origine, son déclencheur
 \begin{landscape}
 \begin{table}[H]
 \centering
-\resizebox{.85\columnwidth}{!}{
+\resizebox{.8\columnwidth}{!}{
 \scriptsize
 \begin{tabular}{p{2cm}p{6,1cm}p{1cm}p{1cm}p{12.25cm}}
 \hline  	\cellcolor{violet!50}& \cellcolor{violet!50}& \cellcolor{violet!50}& \cellcolor{violet!50}&\bf Périmètre \cellcolor{violet!50}\\
@@ -260,27 +260,123 @@ DIMENSION 7\cellcolor{blue!70} & \bf Des ressources documentaires sur les techno
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Description des risques}
+Pour parvenir à décrire les risques, nous avons évalué les risques de 4 natures :
+\begin{enumerate}
+	\item Perturbateurs
+	\item Négligeables
+	\item Grave
+	\item Intolérable
+\end{enumerate}
+
+Nous nous sommes astreint à les détailler selon leurs origines, leurs déclencheurs et enfin par leurs conséquences qui peuvent être multicausal.
 %Tableau de description des risques
 \begin{landscape}
 \begin{table}[H]
 \scriptsize
 \caption{Description des risques}
-\begin{tabular}{p{6,1cm}p{3.5cm}p{6.75cm} p{6.75cm}}
-\hline Risque identifié & \bf Origine du risque & \bf Déclencheurs envisageables & \bf Conséquences possibles \\
+\begin{tabular}{p{.1cm}p{6,1cm}p{3.5cm}p{6.75cm} p{6.75cm}}
+\hline & Risque identifié & \bf Origine du risque & \bf Déclencheurs envisageables & \bf Conséquences possibles \\
 \hline
-&&&\\
-Réalisation d’un produit incohérent avec les attentes et les besoins & Absence de périmètre fonctionnel précis\cellcolor{blue!50} & 
- \begin{itemize}
-\item Difficultés techniques en cours de développement
- 			\item Apparition de nouveaux besoins lors des ateliers de conception
- 			\cellcolor{green!50}
- \end{itemize} & 
- \begin{itemize}
- 	\item Dépassement de charges (axe coût)
- 	\item Dépassement des échéances (axe délai)
- \end{itemize}
- \cellcolor{red!50}\\
 
+\cellcolor{violet!75} & Impossibilité de faire évoluer le budget en cours de projet & Mauvais qualité du code\cellcolor{green!50} & 
+
+{•} Mauvaise gestion mémoire
+			
+{•} Dépassement de pile/tampon
+\cellcolor{blue!50}
+ & 
+{•} Nécessité d’écrire dans le langage Go ou Rust
+
+{•} Structurer le code en design Pattern et imposer les types pour chaque variable
+\cellcolor{red!50}\\
+\hline
+\cellcolor{red!75} & Dépassement de budget & Ressources humaines surévaluées\cellcolor{green!50} & 
+
+{•} Conflit sur l’attribution des rôles
+
+{•} Storming dans le groupe
+\cellcolor{blue!50}
+& 
+{•} Absentéisme/départ
+
+{•} Manque de motivation
+
+{•} Perception d’abandon du projet
+
+ \cellcolor{red!50}\\
+\hline
+\cellcolor{orange!75} & Dépassement de l’objectif Délais & Mauvaise charge de travail\cellcolor{green!50} & 
+
+{•} Manque des fonctionnalités essentiels
+
+{•} Travail dans l’urgence, pas de repos
+\cellcolor{blue!50}
+& 
+{•} Produit non-fonctionnel
+
+{•} Mécontentement dans l’équipe
+
+{•} Prise de risque inconsidérée
+
+ \cellcolor{red!50}\\
+\hline
+\cellcolor{yellow!75} & Défaut de contrôle de la production mobile & Mauvaise sécurité et maj\cellcolor{green!50} & 
+
+{•} Manque d’examen des permissions de stockage dans le Cloud
+
+{•} Les serveurs n’envoient pas d’en-têtes ou de directives de sécurité, ou ne sont pas paramétré avec des valeurs de sécurité.
+\cellcolor{blue!50}
+& 
+{•} La configuration permet d’envoyer au client des messages d’erreurs détaillés, avec des traces de couches protocolaires applicatives.
+
+{•} Un fournisseur de Cloud a positionné des droits par défaut, ouvert sur Internet, cela permet l’accès à des données sensibles.
+
+{•} Prise de risque inconsidérée
+
+ \cellcolor{red!50}\\
+ \hline
+\cellcolor{green!75} & Mauvaise identification d’un client & 	Authentification\cellcolor{green!50} & 
+
+{•} Le processus de récupération du mot de passe est faible ou inefficace.
+
+{•} Les jetons de sessions ne sont pas correctement invalidés lors de la déconnexion.
+\cellcolor{blue!50}
+& 
+{•} Un attaquant utilise un même navigateur quelque temps après et l’utilisateur est toujours authentifié.
+
+{•} L’application peut être utilisé comme un oracle pour déterminer si les mots de passes sont valides.
+
+{•} Les utilisateurs utilisent des mots de passes faibles.
+
+ \cellcolor{red!50}\\
+  \hline
+\cellcolor{blue!50} & Anomalie techniques dans les transferts d’information & Utilisation de FTP ou SMTP\cellcolor{green!50} & 
+
+{•} Utilisation d’un chiffrement simple plutôt qu’un chiffrement authentifié
+
+{•} Ne pas désactiver le cache pour des réponses contenant des données sensibles
+
+\cellcolor{blue!50}
+& 
+{•} Un attaquant intercepte les cookie et détourne la session pour voler les données en transit (virement d’argent)
+
+{•} Les données sont automatiquement déchiffrées, permettant de récupérer des numéros de carte de crédit en clair.
+
+ \cellcolor{red!50}\\
+  \hline
+\cellcolor{blue!75} & Composant obsolète et vulnérable & Absence de veille technologique\cellcolor{green!50} & 
+
+{•} Ne pas savoir quels sont tous les composants que vous utilisez
+
+{•} Si les développeurs de logiciels ne testent pas la compatibilité des évolutions, des majs et des correctifs
+
+\cellcolor{blue!50}
+& 
+{•} Les composants s’exécutent avec le même niveau de privilèges que l’application, donc peuvent engendrer un impact sévère.
+
+{•} Le référencement sur des moteurs de recherche aidant les attaquants à trouver des systèmes mal configurés ou non mis à jour (Shodan).
+
+ \cellcolor{red!50}\\
 %ajouter autant de ligne que nécessaire
 
 \hline

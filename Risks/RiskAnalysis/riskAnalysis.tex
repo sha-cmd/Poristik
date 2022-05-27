@@ -14,6 +14,10 @@
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \usepackage{graphicx}
 \usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{hhline}
+\usepackage{stackengine}
+\setstackEOL{\\}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{mathptmx}
@@ -39,140 +43,6 @@
 \listoftables 
 
 \newpage
-\section{Plan de prévention}
-Avec ce plan nous pourrons prévoir les actions à mettre en œuvre, d’après leur probabilité de réalisation et leur gravité.
-
-Une personne se trouve désignée en qualité du responsable de l’exécution de l’action. De sorte qu’un évènement peut entraîner une action de la part de cette personne responsable, pour agir soit en anticipation, soit en protection.
-
-Réduire la criticité d’un risque est très rarement gratuit, mais les actions sont des leviers permettant d’agir sur les causes, tout autant que sur le périmètre fonctionnel.
-
-De plus, les actions vont pourvoir un moyen organisationnel et responsabilisant.
-
-Enfin, malgré leurs coûts, les actions peuvent permettre d’agir favorablement sur les ressources et sur les délais de livraison. 
-
-Voici donc sur la page suivant le tableau \ref{plan_de_prevention}, qui détaille l’ensemble des risques probables du projet que nous avons identifiés préalablement dans le tableau \ref{identifier_les_risques}.
-
-%Feuille de plan de prévention des risques
-\begin{landscape}
-
-\begin{table}[H]
-\centering
-\resizebox{\columnwidth}{!}{
-\scriptsize
-\begin{tabular}{p{1cm} p{2cm} p{2cm} p{1.5cm} p{1cm}p{1cm}p{4cm}p{3.3cm} p{1.3cm}p{1cm} p{1cm}}
-\hline & & & \bf Initial Risk & & & &&\bf Residual Risk & & \\ [5pt]
- \bf Resp.  & \bf Accident & \bf Probables Causes & \ \bf Probabilité & \bf Sévérité & \bf Risk Level & \bf Actions Preventives& \bf Reparations & \bf Probabilité &\bf Sévérité & \bf Risk Level \\
-\hline
- Codeur  & Usurpation d’identité & Stockage en clair du password& 3 & 4 & \cellcolor{red!50} 12 & Fonction de dérivation, graine et salage du mot de passage & Alerte client pour toute nouvelle connexion IP & 1 & 2 & \cellcolor{green!50} 2 \\ 
-  Codeur  & Injection & Données hostiles & 4 & 4 & \cellcolor{red!75} 16 & Échappement des chars spéciaux, utilisation de LIMIT en SQL & Stocker données nécessaires, seulement & 2 & 2 & \cellcolor{green!50} 4 \\ 
-  Codeur  & Déni de service & Fichier accessible par tous via lien & 5 & 2 & \cellcolor{yellow!50} 10 &  Tester la performance E/S & Réarchitecturer, optimiser, utiliser la cache & 5 & 1 & \cellcolor{green!50} 5 \\ 
-Data Scientist & Intégrité des données & Data sérialisées non sécurisées & 1 & 4 & \cellcolor{green!50} 4 &  Chiffrer et signer les data échangées & Ségrégation du pipeline, contrôler l’accès au code & 1 & 2 & \cellcolor{green!50} 2 \\ 
-Dev/Ops & Security Misconfiguration & Un composant est obsolète ou vulnérable & 1 & 4 & \cellcolor{green!50} 4 & Ne pas installer des fonctionnalités inutilisées & Utiliser la conteneurisation, une architecture segmentée sûre & 1 & 2 & \cellcolor{green!50} 3 \\ 
-Codeur & Composant Vulnérable & Pas de veille sur failles de sécurité & 2 & 3,5 & \cellcolor{yellow!50} 7 & Supprimer les dépendances inutiles & Mettre en dépôt une version risquée, lue et reconnue & 1 & 3.5 & \cellcolor{green!50} 3.5 \\ 
-Codeur & Erreur Gestion Mémoire & Mauvaise utilisation mémoire & 5 & 3 & \cellcolor{red!50} 15 & Typer les variables, design pattern & Envisager le codage en Go ou Rust & 1 & 3 & \cellcolor{green!50} 3 \\ 
-Codeur & Authentification & Autoriser les comptes par défaut & 3.6 & 5 & \cellcolor{red!75} 18 & Livrer, déployer sans compte par défaut & Intégrer des tests de password à la création, au changement & 2 & 3 & \cellcolor{yellow!50} 6 \\ 
-Dev/Ops & Vol de données bancaires & Mémorisation du numéro de CB & 2 & 8 & \cellcolor{red!75} 16 & Utiliser une tokenisation de norme sûre comme PCI DSS & Classifier, identifier ou rejeter les données sensibles & 2 & 4 & \cellcolor{yellow!50} 8 \\ 
-%ajouter autant de ligne que nécessaire
-\hline
-\end{tabular}
-}
-\caption{Plan de prévention}
-\label{plan_de_prevention}
-\end{table}
-\end{landscape}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Périmètre fonctionnel}
-C’est grâce à cette énumération des risques résidant entre les objectifs et le résultat que nous avons élaboré un tableau de périmètre fonctionnel.
-Par sa structure, ce tableau permet de se focaliser sur les dangers autour de 3 grands thèmes :
-\begin{enumerate}
-	\item Réalisations
-	\item Estimation de la charge
-	\item Compétences nécessaires
-\end{enumerate}
-
-De plus, il demeure une clef d’appréciation des éléments que l’on dénomme sous l’acronyme SWOT, lesquels sont :
-\begin{itemize}
-	\item Opportunités et menaces
-	\begin{itemize}
-		\item Risques externes
-	\end{itemize}
-	\item Forces et Faiblesses
-	\begin{itemize}
-		\item Risques internes
-	\end{itemize}
-\end{itemize}
-
-L’ensemble des éléments de compréhension du périmètre des fonctionnalités est répertorié dans le tableau \ref{functional_perimeter} de la page suivante.
-
-Plus encore que pour les 7 dimensions du risque du tableau \ref{identifier_les_risques}, nous avons eu des retours intéressants par les analyses suivantes :
-\begin{itemize}
-	\item QQOQCCP
-	\item Arbre à objectifs
-			\begin{itemize}
-				\item Objectif général
-				\item Objectif secondaires
-				\item Objectif opérationnels
-				\item Fonctionnalités clés
-			\end{itemize}
-\end{itemize}
-%Périmètre fonctionnel "Poristik"
-\begin{landscape}
-\begin{table}[H]
-\center
-\resizebox{\columnwidth}{!}{
-\scriptsize
-\begin{tabular}{p{1cm}p{2cm}p{3cm}p{10cm}p{1.75cm}p{1.5cm}p{1.25cm}p{.5cm}p{.5cm}}
-\hline  Ref.	\cellcolor{gray!25}&Type \cellcolor{gray!25}& Nom\cellcolor{gray!25}& Descriptif \cellcolor{gray!25}& \bf Accès identifié \cellcolor{gray!25} & \bf Complexité \cellcolor{gray!25} & \bf Priorité \cellcolor{gray!25} & \bf V1 \cellcolor{gray!25} & \bf (V2) \cellcolor{gray!25}\\
-\hline  	\bf A\cellcolor{gray!50}& \bf Écran\cellcolor{gray!50}& \bf Intro\cellcolor{gray!50}& \bf Écran de lancement de l’application\cellcolor{gray!50}& \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50}\\
-\hline  	\bf A1& Fonctionnalité & UX & Demander l’autorisation de démarrer la vidéo et le son &  & 1 &  2 &  & \bf X\\
-\hline  	\bf A2& Fonctionnalité & Responsive & Adaptation à toutes les tailles d’écran &  & 3 &  5 & \bf X & \\
-\hline  	\bf A3& Fonctionnalité & Web Design & Couleur, logo et design appartenant à la charte graphique &  & 3 &  4 & \bf X & \\
-\hline  	\bf A4& Fonctionnalité & Security & Bouton de création, login et interface de connexion sécurisée, à son compte utilisateur & X & 5 &  4 &  & \bf X\\
-\hline  	\bf A5& Fonctionnalité & Https & Connexion chiffrée pour les visiteurs &  & 5 &  4 & \bf X & \\
-\hline  	\bf A6& Fonctionnalité & Cookie & Demande de l’accord pour le stockage de données personnelles (traitements - RGPD) & X & 2 & 5 &  & \bf X \\
-\hline  	\bf B\cellcolor{gray!50}& \bf CRUD\cellcolor{gray!50}& \bf Parameters\cellcolor{gray!50}& \bf Interface de configuration\cellcolor{gray!50}& \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50}\\
-\hline  	\bf B1& Fonctionnalité & Parameters & Gestion des options du comportement de l’application & X & 5 &  4 & \bf X & \\
-\hline  	\bf B2& Fonctionnalité & Changement & Modification des informations personnelles & X & 5 &  4 & \bf X & \\
-\hline  	\bf B3& Fonctionnalité & Notation & Sélection des historiques de navigation retenus par le système de recommandation & X & 5 & 4 &  & \bf X \\
-\hline  	\bf B4& Fonctionnalité & Hash/Salage & Stockage des mots de passe hacher & X & 1 & 4 &  & \bf X \\
-\hline  	\bf C\cellcolor{gray!50}& \bf Accessibility\cellcolor{gray!50}& \bf W3C\cellcolor{gray!50}& \bf Adaptation aux handicaps\cellcolor{gray!50}& \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50}\\
-\hline  	\bf C1& Fonctionnalité & Mal-entendant & Écriture des sous-titres des vidéos et descriptif des scènes &  & 1 &  3 &  & \bf X\\
-\hline  	\bf C2& Fonctionnalité & Déficience visuelle & Mode contraste élevé &  & 1 &  4 &  & \bf X \\
-\hline  	\bf C3& Fonctionnalité & Non-voyant & Description optionnelle des médias &  & 1 &  3 & \bf X & \\
-\hline  	\bf D\cellcolor{gray!50}& \bf Translation\cellcolor{gray!50}& \bf Living in EU\cellcolor{gray!50}& \bf Internationalisation\cellcolor{gray!50}& \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50}\\
-\hline  	\bf D1& Fonctionnalité & Export & Gestion du mode multi-nationalité &  & 2 &  2 &  & \bf X \\
-\hline  	\bf D2& Fonctionnalité & Etna & Gestion de la langue Italienne &  & 2 &  5 & \bf X & \\
-\hline  	\bf E\cellcolor{gray!50}& \bf Deep Learning\cellcolor{gray!50}& \bf Open AI \cellcolor{gray!50}& \bf Data Science et IA\cellcolor{gray!50}& \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50}\\
-\hline  	\bf E1& Fonctionnalité & Nettoyage & Préparation des données pour le DL&  & 1 &  5 & \bf X &  \\
-\hline  	\bf E2& Fonctionnalité & EDA & Orienter la lecture des data sur l’écartement des biais présents dans la base de données &  & 5 &  1 & \bf X &  \\
-\hline  	\bf E3& Fonctionnalité & Modélisation & Entraînement du modèle &  & 1 &  5 & \bf X &  \\
-\hline  	\bf E4& Fonctionnalité & Test & Test du modèle &  & 1 &  5 & \bf X &  \\
-\hline  	\bf E5& Fonctionnalité & Interprétation & Interprétation du modèle &  & 3 &  5 &  & \bf X \\
-\hline  	\bf E6& Fonctionnalité & Dev/Ops & Conservation du code sur GitHub & X & 1 &  3 & \bf X & \\
-\hline  	\bf E7& Fonctionnalité & Éthique & Éditer un communiqué sur l’éthique du modèle &  & 3 &  2 &  & \bf X \\
-\hline  	\bf F\cellcolor{gray!50}& \bf UpLoad\cellcolor{gray!50}& \bf Recollect \cellcolor{gray!50}& \bf Unknown Data\cellcolor{gray!50}& \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50}\\
-\hline  	\bf F1& Fonctionnalité & Stockage & Transmission chiffrée et sauvegarde en blob des photos (> 800Ko, <12Mo par photos) & X & 2 & 5 & \bf X &  \\
-\hline  	\bf F2& Fonctionnalité & Table Relationnelle & Transmission (chiffrée) et sauvegarde des noms des photos et de leurs références (stats) & X & 2 & 5 & \bf X &  \\
-\hline  	\bf F3& Fonctionnalité & Resolution & Retouche pics en vue d’utilisation par le modèle (harmonisation de la résolution/format) &  & 2 & 4 & \bf X &  \\
-\hline  	\bf F4& Fonctionnalité & Backup & Duplication de la base de données sur deux régions, au minimum &  & 3 & 3 &  & \bf X \\
-\hline  	\bf G\cellcolor{gray!50}& \bf Deployment\cellcolor{gray!50}& \bf Cloud \cellcolor{gray!50}& \bf Disponibilité du service\cellcolor{gray!50}& \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50}\\
-\hline  	\bf G1& Fonctionnalité & PyTest & Test de Déploiement en Dev/Ops GitHub Action & X & 4 & 5 & \bf X &  \\
-\hline  	\bf G1& Fonctionnalité & Kubernetes & Déploiement en pod avec Kubernetes & X & 4 & 5 & \bf X &  \\
-\hline  	\bf G2& Fonctionnalité & Pods & Connexion des pods d’application et de base de données &  & 3 & 5 & \bf X &  \\
-\hline  	\bf G3& Fonctionnalité & Redondance du service & Déploiement au plus près des clients & X & 1 & 5 &  & \bf X \\
-\hline  	\bf G4& Fonctionnalité & Adaptation & Ajustement du nombre de serveur en fonction du nombre d’utilisateur & X & 2 & 5 & & \bf X \\
-\hline  	\bf G5& Fonctionnalité & Monitoring & Remonté d’alerte au problème à la moindre prédiction, connexion, ou téléversement & X & 2 & 5 & & \bf X \\
-%ajouter autant de ligne que nécessaire.
-
-\hline
-\end{tabular}
-}
-\caption{Périmètre fonctionnel}
-\label{functional_perimeter}
-\end{table}
-\end{landscape}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Identification des risques "génériques"}
@@ -216,7 +86,7 @@ DIMENSION 2\cellcolor{red!90} & \bf Le budget tient-il compte de l’effort de p
 \hline \cellcolor{orange!75}& \cellcolor{orange!75}& \cellcolor{orange!75}& \cellcolor{orange!75}&\bf Temps \cellcolor{orange!75}\\
 \cellcolor{orange!75} & \bf Un planning (même macro) prévisionnel a-t-il été établi ? & \bf OUI \cellcolor{green!50}& \bf NON\cellcolor{red!50} & Un diagramme de GANTT sera pourvu. \\
 DIMENSION 3\cellcolor{orange!75} & \bf Des échéances impératives existent-elle ? & \bf OUI \cellcolor{green!50}& \bf NON\cellcolor{red!50} & La présentation a lieu au COMEX. \\
-\cellcolor{orange!75} & \bf Le temps disponible est-il cohérent avec le péérimètre du projet ? & \bf OUI \cellcolor{red!50}& \bf NON\cellcolor{green!50} & Il sera quasiment impossible de produire un livrable remplissant toutes les fonctionnalités avec le budget de départ, dans les délais. \\
+\cellcolor{orange!75} & \bf Le temps disponible est-il cohérent avec le périmètre du projet ? & \bf OUI \cellcolor{red!50}& \bf NON\cellcolor{green!50} & Il sera quasiment impossible de produire un livrable remplissant toutes les fonctionnalités avec le budget de départ, dans les délais. \\
 \cellcolor{orange!75} & \bf La période de réalisation du projet contient-elle des dates où on ne pourra pas travailler au projet ? & \bf OUI \cellcolor{red!50}& \bf NON\cellcolor{green!50} & L’équipe est disponible sans interruption. \\
 \hline \cellcolor{yellow!50}& \cellcolor{yellow!50}& \cellcolor{yellow!50}& \cellcolor{yellow!50}&\bf Équipe \cellcolor{yellow!50}\\
 \cellcolor{yellow!50} & \bf Les compétences nécessaires à la réalisation sont-elles disponibles ? & \bf OUI \cellcolor{green!50}& \bf NON\cellcolor{red!50} & Les compétences Web et IA sont toutes présentes en interne. \\
@@ -384,16 +254,62 @@ Nous nous sommes astreint à les détailler selon leurs origines, leurs déclenc
 \end{table}
 \end{landscape}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Plan de prévention}
+Avec ce plan nous pourrons prévoir les actions à mettre en œuvre, d’après leur probabilité de réalisation et leur gravité.
+
+Une personne se trouve désignée en qualité du responsable de l’exécution de l’action. De sorte qu’un évènement peut entraîner une action de la part de cette personne responsable, pour agir soit en anticipation, soit en protection.
+
+Réduire la criticité d’un risque est très rarement gratuit, mais les actions sont des leviers permettant d’agir sur les causes, tout autant que sur le périmètre fonctionnel.
+
+De plus, les actions vont pourvoir un moyen organisationnel et responsabilisant.
+
+Enfin, malgré leurs coûts, les actions peuvent permettre d’agir favorablement sur les ressources et sur les délais de livraison. 
+
+Voici donc sur la page suivant le tableau \ref{plan_de_prevention}, qui détaille l’ensemble des risques probables du projet que nous avons identifiés préalablement dans le tableau \ref{identifier_les_risques}.
+
+%Feuille de plan de prévention des risques
+\begin{landscape}
+
+\begin{table}[H]
+\centering
+\resizebox{\columnwidth}{!}{
+\scriptsize
+\begin{tabular}{p{1cm} p{2cm} p{2cm} p{1.5cm} p{1cm}p{1cm}p{4cm}p{3.3cm} p{1.3cm}p{1cm} p{1cm}}
+\hline & & & \bf Initial Risk & & & &&\bf Residual Risk & & \\ [5pt]
+ \bf Resp.  & \bf Accident & \bf Probables Causes & \ \bf Probabilité & \bf Sévérité & \bf Risk Level & \bf Actions Preventives& \bf Reparations & \bf Probabilité &\bf Sévérité & \bf Risk Level \\
+\hline
+ Codeur  & Usurpation d’identité & Stockage en clair du password& 3 & 4 & \cellcolor{red!50} 12 & Fonction de dérivation, graine et salage du mot de passage & Alerte client pour toute nouvelle connexion IP & 1 & 2 & \cellcolor{green!50} 2 \\ 
+  Codeur  & Injection & Données hostiles & 4 & 4 & \cellcolor{red!75} 16 & Échappement des chars spéciaux, utilisation de LIMIT en SQL & Stocker données nécessaires, seulement & 3 & 4 & \cellcolor{yellow!50} 12 \\ 
+  Codeur  & Déni de service & Fichier accessible par tous via lien & 5 & 2 & \cellcolor{yellow!50} 10 &  Tester la performance E/S & Réarchitecturer, optimiser, mettre en cache & 4 & 2 & \cellcolor{yellow!50} 8 \\ 
+Data Scientist & Intégrité des données & Data sérialisées non sécurisées & 3 & 4 & \cellcolor{red!25} 12 &  Chiffrer et signer les data échangées & Ségrégation du pipeline, contrôler l’accès au code & 2 & 3 & \cellcolor{yellow!50} 6 \\ 
+Dev/Ops & Security Misconfiguration & Un composant est obsolète ou vulnérable & 3 & 3.5 & \cellcolor{green!50} 10.5 & Ne pas installer des fonctionnalités inutilisées & Utiliser la conteneurisation, une architecture segmentée sûre & 3 & 2 & \cellcolor{yellow!50} 6 \\ 
+Codeur & Composant Vulnérable & Pas de veille sur failles de sécurité & 2 & 3,5 & \cellcolor{yellow!50} 7 & Supprimer les dépendances inutiles & Mettre en dépôt une version risquée, lue et reconnue & 1 & 3.5 & \cellcolor{green!50} 3.5 \\ 
+Codeur & Erreur Gestion Mémoire & Mauvaise utilisation mémoire & 5 & 3 & \cellcolor{red!50} 15 & Typer les variables, design pattern & Envisager le codage en Go ou Rust & 1 & 3 & \cellcolor{green!50} 3 \\ 
+Codeur & Authentification & Autoriser les comptes par défaut & 3.6 & 5 & \cellcolor{red!75} 18 & Livrer, déployer sans compte par défaut & Intégrer des tests de password à la création, au changement & 3 & 3 & \cellcolor{yellow!50} 9 \\ 
+Dev/Ops & Vol de données bancaires & Mémorisation du numéro de CB & 2 & 8 & \cellcolor{red!75} 16 & Utiliser une tokenisation de norme sûre comme PCI DSS & Classifier, identifier ou rejeter les données sensibles & 2 & 4 & \cellcolor{yellow!50} 8 \\ 
+%ajouter autant de ligne que nécessaire
+\hline
+\end{tabular}
+}
+\caption{Plan de prévention}
+\label{plan_de_prevention}
+\end{table}
+\end{landscape}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %La commande ci-dessous génère une matrice de risque 4X5 avec les régions ALARP pour la matrice de risque initiale.
+
 
 \begin{table}[H]
 \centering
 \scriptsize
 \begin{tabular}{|p{2cm}|p{2cm}|p{2cm}| p{2cm} |p{2cm}| p{2cm}|}
 \hline \bf Frequence/ Conséquence & \bf 1-Très Peu Probable & \bf 2-Peu Probable & \bf 3-Occasionnel & \bf 4-Probable & \bf 5-Fréquent\\ [10pt]
-\hline \bf 4-Catastrophique &Data Integrity, Misconfiguration\cellcolor{yellow!50} & Data Stealing\cellcolor{red!50} & Authentication, Password\cellcolor{red!50} & Injection\cellcolor{red!50} &\cellcolor{red!50} \\ [10pt]
-\hline \bf 3-Critique &\cellcolor{green!50} & \cellcolor{yellow!50} & \cellcolor{yellow!50} & \cellcolor{red!50} & Memory Management\cellcolor{red!50} \\ [10pt]
+\hline \bf 4-Catastrophique &Data\cellcolor{yellow!50} & Data Leaks\cellcolor{red!50} & Authentication, Password\cellcolor{red!50} & Injection\cellcolor{red!50} &\cellcolor{red!50} \\ [10pt]
+\hline \bf 3-Critique &\cellcolor{green!50} & \cellcolor{yellow!50} & Misconfiguration \cellcolor{yellow!50} &Integrity \cellcolor{red!50} & Memory Management\cellcolor{red!50} \\ [10pt]
 \hline \bf 2-Majeur & \cellcolor{green!50} & \cellcolor{green!50} & Vulnerability\cellcolor{yellow!50} &\cellcolor{yellow!50} &Service Deny\cellcolor{red!50} \\ [10pt]
 \hline \bf 1-Mineur & \cellcolor{green!50} & \cellcolor{green!50} & \cellcolor{green!50} &\cellcolor{yellow!50} &\cellcolor{yellow!50} \\ [10pt]
 \hline
@@ -401,20 +317,18 @@ Nous nous sommes astreint à les détailler selon leurs origines, leurs déclenc
 \caption{Matrice de risque initial}
 
 \end{table}
-
- 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%La commande ci-dessous génère une matrice de risque 4X5 avec les régions ALARP pour la matrice de risque initiale.
+%La commande ci-dessous génère une matrice de risque 4X5 avec les régions ALARP pour la matrice de risque résiduel.
 
 \begin{table}[H]
 \centering
 \scriptsize
 \begin{tabular}{|p{2cm}|p{2cm}|p{2cm}| p{2cm} |p{2cm}| p{2cm}|}
 \hline \bf Frequence/ Conséquence & \bf 1-Très Peu Probable & \bf 2-Peu Probable & \bf 3-Occasionnel & \bf 4-Probable & \bf 5-Fréquent\\ [10pt]
-\hline \bf 4-Catastrophique & Misconfiguration, Data Integrity, Data Stealing \cellcolor{yellow!50} &\cellcolor{red!50} & \cellcolor{red!50} & \cellcolor{red!50} &\cellcolor{red!50} \\ [10pt]
-\hline \bf 3-Critique &Memory Management, Vulnerability\cellcolor{green!50} & Authentication\cellcolor{yellow!50} & \cellcolor{yellow!50} & \cellcolor{red!50} &\cellcolor{red!50} \\ [10pt]
-\hline \bf 2-Majeur & Password\cellcolor{green!50} & Injection\cellcolor{green!50} & \cellcolor{yellow!50} &\cellcolor{yellow!50} &\cellcolor{red!50} \\ [10pt]
-\hline \bf 1-Mineur & \cellcolor{green!50} & \cellcolor{green!50} & \cellcolor{green!50} &\cellcolor{yellow!50} &Service Deny\cellcolor{yellow!50} \\ [10pt]
+\hline \bf 4-Catastrophique &  Data Leaks \cellcolor{yellow!50} &\cellcolor{red!50} & Injection\cellcolor{red!50} & \cellcolor{red!50} &\cellcolor{red!50} \\ [10pt]
+\hline \bf 3-Critique &Memory Management, Vulnerability\cellcolor{green!50} & \cellcolor{yellow!50} & Authentication \cellcolor{yellow!50} & \cellcolor{red!50} &\cellcolor{red!50} \\ [10pt]
+\hline \bf 2-Majeur & Password\cellcolor{green!50} & \cellcolor{green!50} & Misconfiguration, Integrity\cellcolor{yellow!50} &Service Deny\cellcolor{yellow!50} &\cellcolor{red!50} \\ [10pt]
+\hline \bf 1-Mineur & \cellcolor{green!50} & \cellcolor{green!50} & \cellcolor{green!50} &\cellcolor{yellow!50} &\cellcolor{yellow!50} \\ [10pt]
 \hline
 \end{tabular} 
 \caption{Matrice de risque résiduel}
@@ -477,52 +391,219 @@ Nous nous sommes astreint à les détailler selon leurs origines, leurs déclenc
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Analyse des risques du projet Poristik}
-\newpage
-\begin{figure}
-\begin{tikzpicture}
-\tkzKiviatDiagram[scale=1,label distance=.5cm,
+\begin{landscape}
+
+\begin{figure}[!htb]
+\resizebox{\width}{!}{
+   \begin{minipage}{0.5\columnwidth}
+     \centering
+	\begin{tikzpicture}
+	\tkzKiviatDiagram[scale=.9,label distance=.5cm,
         radial  = 5,
         gap     = 1,  
-        lattice = 5]{Vulnerability,Injection,Authentication,Data Stealing,Service Deny, Misconfiguration}
-\tkzKiviatLine[thick,color=orange,mark=none,
-               fill=orange!20,opacity=.5](5,5,5,5,5,5)
-\tkzKiviatLine[thick,color=orange,
-               fill=white!20,opacity=1](3,3,3,3,3,3) 
-\tkzKiviatLine[ultra thick,mark=ball,
-                 mark size=4pt,color=Maroon](1.75,2,3,4,2.5,1.5)    
-\tkzKiviatGrad[prefix=,unity=1,suffix=](1)  
-\end{tikzpicture}	
+        lattice = 5]{Vulnerability,Injection, Integrity, Authentication,Data Leaks,Service Deny, Misconfiguration}
+	\tkzKiviatLine[thick,color=orange,mark=none,
+               fill=orange!20,opacity=.5](5,5,5,5,5,5,5)
+	\tkzKiviatLine[thick,color=orange,
+               fill=white!20,opacity=1](3,3,3,3,3,3,3) 
+	\tkzKiviatLine[ultra thick,mark=ball,
+                 mark size=4pt,color=Maroon](2,3.8,4.3,4.5,4,2,3)    
+	\tkzKiviatGrad[prefix=,unity=1,suffix=](1)  
+	\end{tikzpicture}	
+   \end{minipage}\hfill
+   \begin{minipage}{0.5\columnwidth}
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{p{4cm}p{3cm}p{.5cm}}
+    \hline
+    Injection\cellcolor{red!60}&Risque élevé\cellcolor{violet!60}&3.8\cellcolor{red!60}\\
+    \multicolumn{3}{c}{\parbox{7.5cm}{Toutes les données provenant du client doivent être normalisé, pour les isoler de l’interpréteur de commande.\cellcolor{red!15}}}\\
+	\\
+    Vulnerability\cellcolor{blue!60}&Risque faible\cellcolor{violet!60}&2\cellcolor{red!60}\\
+\multicolumn{3}{c}{\parbox{7.5cm}{Limitation du nombre de fonctionnalité, pour réduire les dépendances à surveiller\cellcolor{blue!15}}}\\
+     \\
+    Misconfiguration\cellcolor{blue!60}&Risque moyen\cellcolor{violet!60}&3\cellcolor{red!60}\\
+\multicolumn{3}{c}{\parbox{7.5cm}{Un composant est vulnérable ou obsolète, la conteneurisation exige un réglage des paramètres de sécurité\cellcolor{blue!15}}}\\
+     \\
+	Service Deny\cellcolor{blue!60}&Risque faible\cellcolor{violet!60}&2\cellcolor{red!60}\\
+\multicolumn{3}{c}{\parbox{7.5cm}{Le nombre de requête sera supportable par l’architecture robuste et la mise en cache des opérations coûteuses.\cellcolor{blue!15}}}\\\\
+	Data Leaks\cellcolor{red!60}&Risque élevé\cellcolor{violet!60}&4\cellcolor{red!60}\\
+\multicolumn{3}{c}{\parbox{7.5cm}{Le paiement par carte bleue ne doit pas utiliser ou stocker de données sensible, en utilisant une norme comme PCI DSS.\cellcolor{blue!15}}}\\\\
+	Authentication\cellcolor{red!60}&Risque élevé\cellcolor{violet!60}&4.5\cellcolor{red!60}\\
+\multicolumn{3}{c}{\parbox{7.5cm}{Livraison sans compte par défaut, intégrer des tests et homogénéiser les configurations dev/prod.\cellcolor{blue!15}}}\\\\
+	Integrity\cellcolor{red!60}&Risque élevé\cellcolor{violet!60}&4.3\cellcolor{red!60}\\
+\multicolumn{3}{c}{\parbox{7.5cm}{Chiffrer, signer les data échangées, contrôle des accès au pipeline.\cellcolor{blue!15}}}\\\\
+\end{tabular}
+\end{center}
+\label{tab:multicol}
+\end{table}	
+   \end{minipage}
+}   
 \caption{Diagramme Kiviat des Risques}
 \end{figure}
 
+\end{landscape}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Périmètre fonctionnel}
+
+C’est grâce à cette énumération des risques résidant entre les objectifs et le résultat que nous avons élaboré un tableau de périmètre fonctionnel.
+Par sa structure, ce tableau permet de se focaliser sur les dangers autour de 3 grands thèmes :
+\begin{enumerate}
+	\item Réalisations
+	\item Estimation de la charge
+	\item Compétences nécessaires
+\end{enumerate}
+
+De plus, il demeure une clef d’appréciation des éléments que l’on dénomme sous l’acronyme SWOT, lesquels sont :
+\begin{itemize}
+	\item Opportunités et menaces
+	\begin{itemize}
+		\item Risques externes
+	\end{itemize}
+	\item Forces et Faiblesses
+	\begin{itemize}
+		\item Risques internes
+	\end{itemize}
+\end{itemize}
+
+L’ensemble des éléments de compréhension du périmètre des fonctionnalités est répertorié dans le tableau \ref{functional_perimeter} de la page suivante.
+
+Plus encore que pour les 7 dimensions du risque du tableau \ref{identifier_les_risques}, nous avons eu des retours intéressants par les analyses suivantes :
+\begin{itemize}
+	\item QQOQCCP
+	\item Arbre à objectifs
+			\begin{itemize}
+				\item Objectif général
+				\item Objectif secondaires
+				\item Objectif opérationnels
+				\item Fonctionnalités clés
+			\end{itemize}
+\end{itemize}
+%Périmètre fonctionnel "Poristik"
+\begin{landscape}
+\begin{table}[H]
+\center
+\resizebox{\columnwidth}{!}{
+\scriptsize
+\begin{tabular}{p{1cm}p{2cm}p{3cm}p{10cm}p{1.75cm}p{1.5cm}p{1.25cm}p{.5cm}p{.5cm}}
+\hline  Ref.	\cellcolor{gray!25}&Type \cellcolor{gray!25}& Nom\cellcolor{gray!25}& Descriptif \cellcolor{gray!25}& \bf Accès identifié \cellcolor{gray!25} & \bf Complexité \cellcolor{gray!25} & \bf Priorité \cellcolor{gray!25} & \bf V1 \cellcolor{gray!25} & \bf (V2) \cellcolor{gray!25}\\
+\hline  	\bf A\cellcolor{gray!50}& \bf Écran\cellcolor{gray!50}& \bf Intro\cellcolor{gray!50}& \bf Écran de lancement de l’application\cellcolor{gray!50}& \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50}\\
+\hline  	\bf A1& Fonctionnalité & UX & Demander l’autorisation de démarrer la vidéo et le son &  & 1 &  2 &  & \bf X\\
+\hline  	\bf A2& Fonctionnalité & Responsive & Adaptation à toutes les tailles d’écran &  & 3 &  5 & \bf X & \\
+\hline  	\bf A3& Fonctionnalité & Web Design & Couleur, logo et design appartenant à la charte graphique &  & 3 &  4 & \bf X & \\
+\hline  	\bf A4& Fonctionnalité & Security & Bouton de création, login et interface de connexion sécurisée, à son compte utilisateur & X & 5 &  4 &  & \bf X\\
+\hline  	\bf A5& Fonctionnalité & Https & Connexion chiffrée pour les visiteurs &  & 5 &  4 & \bf X & \\
+\hline  	\bf A6& Fonctionnalité & Cookie & Demande de l’accord pour le stockage de données personnelles (traitements - RGPD) & X & 2 & 5 &  & \bf X \\
+\hline  	\bf B\cellcolor{gray!50}& \bf CRUD\cellcolor{gray!50}& \bf Parameters\cellcolor{gray!50}& \bf Interface de configuration\cellcolor{gray!50}& \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50}\\
+\hline  	\bf B1& Fonctionnalité & Parameters & Gestion des options du comportement de l’application & X & 5 &  4 & \bf X & \\
+\hline  	\bf B2& Fonctionnalité & Changement & Modification des informations personnelles & X & 5 &  4 & \bf X & \\
+\hline  	\bf B3& Fonctionnalité & Notation & Sélection des historiques de navigation retenus par le système de recommandation & X & 5 & 4 &  & \bf X \\
+\hline  	\bf B4& Fonctionnalité & Hash/Salage & Stockage des mots de passe hacher & X & 1 & 4 &  & \bf X \\
+\hline  	\bf C\cellcolor{gray!50}& \bf Accessibility\cellcolor{gray!50}& \bf W3C\cellcolor{gray!50}& \bf Adaptation aux handicaps\cellcolor{gray!50}& \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50}\\
+\hline  	\bf C1& Fonctionnalité & Mal-entendant & Écriture des sous-titres des vidéos et descriptif des scènes &  & 1 &  3 &  & \bf X\\
+\hline  	\bf C2& Fonctionnalité & Déficience visuelle & Mode contraste élevé &  & 1 &  4 &  & \bf X \\
+\hline  	\bf C3& Fonctionnalité & Non-voyant & Description optionnelle des médias &  & 1 &  3 & \bf X & \\
+\hline  	\bf D\cellcolor{gray!50}& \bf Translation\cellcolor{gray!50}& \bf Living in EU\cellcolor{gray!50}& \bf Internationalisation\cellcolor{gray!50}& \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50}\\
+\hline  	\bf D1& Fonctionnalité & Export & Gestion du mode multi-nationalité &  & 2 &  2 &  & \bf X \\
+\hline  	\bf D2& Fonctionnalité & Etna & Gestion de la langue Italienne &  & 2 &  5 & \bf X & \\
+\hline  	\bf E\cellcolor{gray!50}& \bf Deep Learning\cellcolor{gray!50}& \bf Open AI \cellcolor{gray!50}& \bf Data Science et IA\cellcolor{gray!50}& \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50}\\
+\hline  	\bf E1& Fonctionnalité & Nettoyage & Préparation des données pour le DL&  & 1 &  5 & \bf X &  \\
+\hline  	\bf E2& Fonctionnalité & EDA & Orienter la lecture des data sur l’écartement des biais présents dans la base de données &  & 5 &  1 & \bf X &  \\
+\hline  	\bf E3& Fonctionnalité & Modélisation & Entraînement du modèle &  & 1 &  5 & \bf X &  \\
+\hline  	\bf E4& Fonctionnalité & Test & Test du modèle &  & 1 &  5 & \bf X &  \\
+\hline  	\bf E5& Fonctionnalité & Interprétation & Interprétation du modèle &  & 3 &  5 &  & \bf X \\
+\hline  	\bf E6& Fonctionnalité & Dev/Ops & Conservation du code sur GitHub & X & 1 &  3 & \bf X & \\
+\hline  	\bf E7& Fonctionnalité & Éthique & Éditer un communiqué sur l’éthique du modèle &  & 3 &  2 &  & \bf X \\
+\hline  	\bf F\cellcolor{gray!50}& \bf UpLoad\cellcolor{gray!50}& \bf Recollect \cellcolor{gray!50}& \bf Unknown Data\cellcolor{gray!50}& \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50}\\
+\hline  	\bf F1& Fonctionnalité & Stockage & Transmission chiffrée et sauvegarde en blob des photos (> 800Ko, <12Mo par photos) & X & 2 & 5 & \bf X &  \\
+\hline  	\bf F2& Fonctionnalité & Table Relationnelle & Transmission (chiffrée) et sauvegarde des noms des photos et de leurs références (stats) & X & 2 & 5 & \bf X &  \\
+\hline  	\bf F3& Fonctionnalité & Resolution & Retouche pics en vue d’utilisation par le modèle (harmonisation de la résolution/format) &  & 2 & 4 & \bf X &  \\
+\hline  	\bf F4& Fonctionnalité & Backup & Duplication de la base de données sur deux régions, au minimum &  & 3 & 3 &  & \bf X \\
+\hline  	\bf G\cellcolor{gray!50}& \bf Deployment\cellcolor{gray!50}& \bf Cloud \cellcolor{gray!50}& \bf Disponibilité du service\cellcolor{gray!50}& \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50} & \cellcolor{gray!50} &  \cellcolor{gray!50}\\
+\hline  	\bf G1& Fonctionnalité & PyTest & Test de Déploiement en Dev/Ops GitHub Action & X & 4 & 5 & \bf X &  \\
+\hline  	\bf G1& Fonctionnalité & Kubernetes & Déploiement en pod avec Kubernetes & X & 4 & 5 & \bf X &  \\
+\hline  	\bf G2& Fonctionnalité & Pods & Connexion des pods d’application et de base de données &  & 3 & 5 & \bf X &  \\
+\hline  	\bf G3& Fonctionnalité & Redondance du service & Déploiement au plus près des clients & X & 1 & 5 &  & \bf X \\
+\hline  	\bf G4& Fonctionnalité & Adaptation & Ajustement du nombre de serveur en fonction du nombre d’utilisateur & X & 2 & 5 & & \bf X \\
+\hline  	\bf G5& Fonctionnalité & Monitoring & Remonté d’alerte au problème à la moindre prédiction, connexion, ou téléversement & X & 2 & 5 & & \bf X \\
+%ajouter autant de ligne que nécessaire.
+
+\hline
+\end{tabular}
+}
+\caption{Périmètre fonctionnel}
+\label{functional_perimeter}
+\end{table}
+\end{landscape}
+
+
+
+
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Backlog}
-%Périmètre fonctionnel "Poristik"
+Dans cette partie, nous avons tâcher de formaliser méthodiquement les besoins du client. Afin de parvenir à ce résultat, nous nous sommes poser les questions :
+\begin{itemize}
+	\item Qui ?
+	\item Quoi ?
+	\item Pourquoi ?
+\end{itemize}
+
+En plus de ces questions, nous nous sommes astreints à offrir une visualisation du projet, selon l’acronyme INVEST :
+\begin{itemize}
+	\item Independent
+	\item Negotiable
+	\item Valuable
+	\item Estimable
+	\item Small
+	\item Testable
+\end{itemize}
+
+Le détaille des actions amenant à ce résultat a été listé en connexion avec les user stories. Elles sont définissables astucieusement par l’acronyme SMART :
+\begin{itemize}
+	\item Specific
+	\item Measurable
+	\item Achievable
+	\item Relevant
+	\item Time-bound
+\end{itemize}
+
+Enfin, comme nous sommes en projet SCRUM, nous n’avons pas de cahier des charges, mais un product backlog pouvant évoluer au cours du projet. L’analyse du backlog est simplifié au moyen de la méthode MoSCoW :
+\begin{itemize}
+	\item Must have (Impératif)
+	\item Should have (Conseil avisé)
+	\item Could have (S’il reste du temps)
+	\item Won’t have (N’aur pas la fonction)
+\end{itemize}
 \begin{landscape}
 \begin{table}[H]
 \scriptsize
 \caption{Backlog}
 \begin{tabular}{p{3cm}p{3cm}p{4cm}p{4cm}p{4cm}p{4cm}}
-\hline  Titre	\cellcolor{gray!25}&En tant que \cellcolor{gray!25}& Je veux\dots\cellcolor{gray!25}&  \dots afin de\dots\cellcolor{gray!25}& \bf Pondération\cellcolor{gray!25} & \bf Données nécessaires\cellcolor{gray!25} \\
+\hline  Titre	\cellcolor{gray!50}&En tant que \cellcolor{gray!50}& Je veux\dots\cellcolor{gray!50}&  \dots afin de\dots\cellcolor{gray!50}& \bf Pondération\cellcolor{gray!50} & \bf Données nécessaires\cellcolor{gray!50} \\
 \hline  Connexion via une adresse mail& 
 Utilisateur de l'application &
   pouvoir me connecter à mon compte sur l'application mobile en utilisant une adresse mail& je peux voir les informations me concernant (infos personnelles, photos prises, articles suggérés, ...)& 
   A définir en relatif par rapport aux autres user stories en donnant un chiffre parmi : 1, 3, 5, 8, 13, 20, 50, 100.&
-  \begin{itemize}
-  \item adresse mail utilisateur
-  \item mot de passe 
-   \end{itemize}\\
-\hline   Conserver le mot de passe haché& Administrateur de Base de données & Ne pas conserver le mot de passe en clair & 
-Réduire le risque de vol d’identité en cas de piratage  & 
-L’utilisation d’un salage et d’une graine lors du hachage augmente la sécurité & mot de passe, sel, graine\\
+{•} adresse mail utilisateur
+
+{•}  mot de passe 
+\\
+\hline   Conserver le mot de passe haché \cellcolor{gray!15} & Administrateur de Base de données \cellcolor{gray!15}& Ne pas conserver le mot de passe en clair \cellcolor{gray!15}& 
+Réduire le risque de vol d’identité en cas de piratage  \cellcolor{gray!15}& 
+L’utilisation d’un salage et d’une graine lors du hachage augmente la sécurité \cellcolor{gray!15}& mot de passe, sel, graine\cellcolor{gray!15}\\
 \hline   Flouter les visages des utilisateurs & Data Scientist / Utilisateur de l’application & Ne pas conserver l’image pouvant servir à la reconnaissance faciale & Ne pas utiliser cette données, car inutile pour le traitement & Les données d’entraînement peuvent être transformer identiquement & Récolte d’éléments vestimentaires avec visage flouté\\
-\hline   Création de recommandation d’achat à partir des cliques & UXDesigner / Utilisateur de l’application & Conserver des historiques de navigations pour faire du neuroprofilage  & Proposer les articles susceptibles de l’intéresser sur la base de son historique de navigation.  & Le client a un droit de sélectionner ce qu’il veut que la plateforme conserve comme données d’historique de navigation & L’historique de navigation, relié au pseudo du client. \\
+\hline   Création de recommandation d’achat à partir des cliques \cellcolor{gray!15}& UXDesigner / Utilisateur de l’application \cellcolor{gray!15}& Conserver des historiques de navigations pour faire du neuroprofilage  \cellcolor{gray!15}& Proposer les articles susceptibles de l’intéresser sur la base de son historique de navigation.  \cellcolor{gray!15}& Le client a un droit de sélectionner ce qu’il veut que la plateforme conserve comme données d’historique de navigation \cellcolor{gray!15}& L’historique de navigation, relié au pseudo du client. \cellcolor{gray!15}\\
 \hline   Création d’un panier d’achat & UXDesigner / Utilisateur de l’application & Conserver une liste d’achats souhaités n & Valider son panier après la phase shopping, au moment du passage en caisse & Ce sont des données peu sensible, modifiable à tout moment par l’utilisateur, mais conserver de manière illimité, comme un service pour l’utilisateur. & Sélection d’article lié au pseudo de l’utilisateur \\
-\hline   Création d’une liste d’envie & UXDesigner / Utilisateur de l’application & Conserver une liste d’envie & Garder des idées d’achats pour une occasion à horizon plus lointaine & Ce sont des données peu sensible, modifiable à tout moment par l’utilisateur, mais conserver de manière illimité, comme un service pour l’utilisateur. & Sélection d’article lié au pseudo de l’utilisateur \\
+\hline   Création d’une liste d’envie \cellcolor{gray!15}& UXDesigner / Utilisateur de l’application \cellcolor{gray!15}& Conserver une liste d’envie \cellcolor{gray!15}& Garder des idées d’achats pour une occasion à horizon plus lointaine \cellcolor{gray!15}& Ce sont des données peu sensible, modifiable à tout moment par l’utilisateur, mais conserver de manière illimité, comme un service pour l’utilisateur. \cellcolor{gray!15}& Sélection d’article lié au pseudo de l’utilisateur \cellcolor{gray!15}\\
 \hline   Système de notation des prédictions & Data Scientist / Utilisateur de l’application & L’utilisateur donne une note ou un like/dislike ou un swipe sur les vêtements proposés & Améliorer les prédictions en connaissant mieux les goûts des utilisateurs (Matrice Users/Items) & Durée de stockage définie par l’utilisateur sur 0, 1, 2 ou 3 ans. & Pseudo utilisateur, Articles, Notes \\
-\hline   Système d’association de produit & Data Scientist / Utilisateur de l’application & L’utilisateur reçoit des recommandations d’articles similaire à ceux qui sont prédits & Augmenter le nombre d’articles similaire (Matrice Items/Items) & La base de données des articles en vente doit pouvoir être catégorisé en hiérarchie de produit. & Les informations sur les produits, photos, descriptifs. \\
+\hline   Système d’association de produit \cellcolor{gray!15}& Data Scientist / Utilisateur de l’application \cellcolor{gray!15}& L’utilisateur reçoit des recommandations d’articles similaire à ceux qui sont prédits \cellcolor{gray!15}& Augmenter le nombre d’articles similaire (Matrice Items/Items) \cellcolor{gray!15}& La base de données des articles en vente doit pouvoir être catégorisé en hiérarchie de produit. \cellcolor{gray!15}& Les informations sur les produits, photos, descriptifs. \cellcolor{gray!15}\\
 \hline   Création d’une interface & Web Design / Utilisateur de l’application & Une interface intuitive avec une charte graphique de la marque & Offrir une bonne expérience utilisateur & Les cookies doivent être autorisées par l’utilisateur & Cookies, IP, Browser fingerprints, stockés maximum 1 an si l’utilisateur autorise les CGU. \\
-\hline   Détection d’une connexion depuis un nouvel appareil & Security / Utilisateur de l’application & Sécuriser l’application pour l’utilisateur & Éviter / Alerter en cas de piratage & Les données ne concerne pas l’identité de la personne directement mais les supports numériques utilisés pour se connecter. & Les données conservés sont l’adresse Mac de la machine, le nom du système OS, le type de navigateur web \\
+\hline   Détection d’une connexion depuis un nouvel appareil \cellcolor{gray!15}& Security / Utilisateur de l’application \cellcolor{gray!15}& Sécuriser l’application pour l’utilisateur\cellcolor{gray!15} & Éviter / Alerter en cas de piratage \cellcolor{gray!15}& Les données ne concerne pas l’identité de la personne directement mais les supports numériques utilisés pour se connecter. \cellcolor{gray!15}& Les données conservés sont l’adresse Mac de la machine, le nom du système OS, le type de navigateur web. \cellcolor{gray!15}\\
 
 
 %ajouter autant de ligne que nécessaire.

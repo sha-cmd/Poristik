@@ -366,7 +366,7 @@
 Projet}\label{multiplicateur-de-lagrange-pour-optimiser-le-dimensionnement-du-projet}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{1}{\boxspacing}
+\prompt{In}{incolor}{11}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
 \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
@@ -378,19 +378,27 @@ Projet}\label{multiplicateur-de-lagrange-pour-optimiser-le-dimensionnement-du-pr
 d'heures de machine chaque mois
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{2}{\boxspacing}
+\prompt{In}{incolor}{186}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{one\PYZus{}dev\PYZus{}cost} \PY{o}{=} \PY{l+m+mi}{20}
-\PY{n}{one\PYZus{}host\PYZus{}cost} \PY{o}{=} \PY{l+m+mi}{2}
-\PY{n}{budget} \PY{o}{=} \PY{l+m+mi}{2500}
+\PY{n}{one\PYZus{}dev\PYZus{}cost} \PY{o}{=} \PY{l+m+mi}{4000}
+\PY{n}{one\PYZus{}host\PYZus{}cost} \PY{o}{=} \PY{l+m+mi}{100}
+\PY{n}{budget} \PY{o}{=} \PY{l+m+mi}{50000}
 \PY{n}{nb\PYZus{}hosts} \PY{o}{=} \PY{n}{budget} \PY{o}{/} \PY{n}{one\PYZus{}host\PYZus{}cost} 
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{204}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{n} \PY{o}{=} \PY{l+m+mi}{10000}  \PY{c+c1}{\PYZsh{} Ratio de retour sur investissement}
+\PY{n}{p} \PY{o}{=} \PY{l+m+mi}{50}  \PY{c+c1}{\PYZsh{} Ratio d’efficacité des dev / host}
 \end{Verbatim}
 \end{tcolorbox}
 
     Nos possibilités maximales sont
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{3}{\boxspacing}
+\prompt{In}{incolor}{187}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{host\PYZus{}min} \PY{o}{=} \PY{l+m+mi}{0}
 \PY{n}{host\PYZus{}max} \PY{o}{=} \PY{n}{budget} \PY{o}{/} \PY{n}{one\PYZus{}host\PYZus{}cost}
@@ -401,7 +409,7 @@ d'heures de machine chaque mois
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{4}{\boxspacing}
+\prompt{In}{incolor}{188}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{def} \PY{n+nf}{n\PYZus{}dev}\PY{p}{(}\PY{n}{n\PYZus{}host}\PY{p}{,} \PY{n}{budget}\PY{p}{)}\PY{p}{:}
     \PY{k}{return} \PY{p}{(}\PY{n}{budget} \PY{o}{\PYZhy{}} \PY{n}{one\PYZus{}host\PYZus{}cost} \PY{o}{*} \PY{n}{n\PYZus{}host}\PY{p}{)} \PY{o}{/} \PY{n}{one\PYZus{}dev\PYZus{}cost}
@@ -409,7 +417,7 @@ d'heures de machine chaque mois
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{5}{\boxspacing}
+\prompt{In}{incolor}{189}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{def} \PY{n+nf}{n\PYZus{}host}\PY{p}{(}\PY{n}{n\PYZus{}dev}\PY{p}{,} \PY{n}{budget}\PY{p}{)}\PY{p}{:}
     \PY{k}{return} \PY{p}{(}\PY{n}{budget} \PY{o}{\PYZhy{}} \PY{n}{one\PYZus{}dev\PYZus{}cost} \PY{o}{*} \PY{n}{n\PYZus{}dev}\PY{p}{)} \PY{o}{/} \PY{n}{one\PYZus{}host\PYZus{}cost}
@@ -419,45 +427,45 @@ d'heures de machine chaque mois
     Plotting les dépenses du budget sur une courbe
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{6}{\boxspacing}
+\prompt{In}{incolor}{190}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{dev\PYZus{}x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{n}{dev\PYZus{}min}\PY{p}{,} \PY{n}{dev\PYZus{}max}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
 \PY{n}{host\PYZus{}y} \PY{o}{=} \PY{n}{n\PYZus{}host}\PY{p}{(}\PY{n}{dev\PYZus{}x}\PY{p}{,} \PY{n}{budget}\PY{p}{)}
 
 \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
 \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{dev\PYZus{}x}\PY{p}{,} \PY{n}{host\PYZus{}y}\PY{p}{)}
-\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Heures de dev}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Heure de serveur}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Nombre de dev}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Nombre de serveur}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{La dépense du budget}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_9_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_10_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{7}{\boxspacing}
+\prompt{In}{incolor}{191}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Les revenus}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{8}{\boxspacing}
+\prompt{In}{incolor}{205}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{def} \PY{n+nf}{revenues}\PY{p}{(}\PY{n}{dev}\PY{p}{,} \PY{n}{host}\PY{p}{)}\PY{p}{:}
     \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}Équation pragmatique qui exprime le bénéfice en }
 \PY{l+s+sd}{    fonction du nombre d’heures de développement}
 \PY{l+s+sd}{    et du nombre d’heure de serveur utiliser.\PYZdq{}\PYZdq{}\PYZdq{}}
-    \PY{k}{return} \PY{n}{dev}\PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{3}\PY{o}{/}\PY{l+m+mi}{4}\PY{p}{)} \PY{o}{*} \PY{n}{host}\PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{4}\PY{p}{)} \PY{o}{*} \PY{l+m+mi}{7}
+    \PY{k}{return} \PY{n}{dev}\PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{p}{(}\PY{n}{p}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{/}\PY{n}{p}\PY{p}{)} \PY{o}{*} \PY{n}{host}\PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{/}\PY{n}{p}\PY{p}{)} \PY{o}{*} \PY{n}{n}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{9}{\boxspacing}
+\prompt{In}{incolor}{206}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{from} \PY{n+nn}{mpl\PYZus{}toolkits}\PY{n+nn}{.}\PY{n+nn}{mplot3d} \PY{k+kn}{import} \PY{n}{Axes3D}
 \PY{n}{dev\PYZus{}axis} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{n}{dev\PYZus{}min}\PY{p}{,} \PY{n}{dev\PYZus{}max}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
@@ -479,7 +487,7 @@ d'heures de machine chaque mois
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-<ipython-input-9-9c6593fc3498>:7: MatplotlibDeprecationWarning: Calling gca()
+<ipython-input-206-9c6593fc3498>:7: MatplotlibDeprecationWarning: Calling gca()
 with keyword arguments was deprecated in Matplotlib 3.4. Starting two minor
 releases later, gca() will take no keyword arguments. The gca() function should
 only be used to get the current axes, or if no axes exist, create new axes with
@@ -489,7 +497,7 @@ plt.axes() or plt.subplot().
     \end{Verbatim}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_12_1.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_13_1.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -498,7 +506,7 @@ plt.axes() or plt.subplot().
 dimensions}\label{repruxe9sentation-de-loptimisation-en-2-dimensions}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{10}{\boxspacing}
+\prompt{In}{incolor}{207}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{fig}\PY{p}{,} \PY{p}{(}\PY{n}{ax\PYZus{}l}\PY{p}{,} \PY{n}{ax\PYZus{}r}\PY{p}{)} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
 
@@ -507,9 +515,9 @@ dimensions}\label{repruxe9sentation-de-loptimisation-en-2-dimensions}}
 \PY{n}{dev\PYZus{}grid}\PY{p}{,} \PY{n}{host\PYZus{}grid} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{meshgrid}\PY{p}{(}\PY{n}{dev\PYZus{}axis}\PY{p}{,} \PY{n}{host\PYZus{}axis}\PY{p}{)}
     
 \PY{n}{im} \PY{o}{=} \PY{n}{ax\PYZus{}l}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{revenues}\PY{p}{(}\PY{n}{dev\PYZus{}grid}\PY{p}{,} \PY{n}{host\PYZus{}grid}\PY{p}{)}\PY{p}{,} \PY{n}{aspect} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{auto}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{extent}\PY{o}{=}\PY{p}{[}\PY{n}{dev\PYZus{}min}\PY{p}{,} \PY{n}{dev\PYZus{}max}\PY{p}{,} \PY{n}{host\PYZus{}min}\PY{p}{,} \PY{n}{host\PYZus{}max}\PY{p}{]}\PY{p}{)}
-\PY{n}{ax\PYZus{}l}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{dev\PYZus{}axis}\PY{p}{,} \PY{n}{n\PYZus{}host}\PY{p}{(}\PY{n}{dev\PYZus{}axis}\PY{p}{,} \PY{n}{buget}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\PY{n}{ax\PYZus{}l}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of dev hours bought}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\PY{n}{ax\PYZus{}l}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of host hours bought}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{ax\PYZus{}l}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{dev\PYZus{}axis}\PY{p}{,} \PY{n}{n\PYZus{}host}\PY{p}{(}\PY{n}{dev\PYZus{}axis}\PY{p}{,} \PY{n}{budget}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{ax\PYZus{}l}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of dev bought}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{ax\PYZus{}l}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of host bought}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \PY{n}{ax\PYZus{}l}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Différente manière de dépenser le budget}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 
 \PY{c+c1}{\PYZsh{} Les contours montrent à quoi ressemble l’intersection}
@@ -520,8 +528,8 @@ dimensions}\label{repruxe9sentation-de-loptimisation-en-2-dimensions}}
 
 \PY{n}{im2} \PY{o}{=} \PY{n}{ax\PYZus{}r}\PY{o}{.}\PY{n}{contour}\PY{p}{(}\PY{n}{revenues}\PY{p}{(}\PY{n}{dev\PYZus{}grid}\PY{p}{,}\PY{n}{host\PYZus{}grid}\PY{p}{)}\PY{p}{,} \PY{n}{extent}\PY{o}{=}\PY{p}{[}\PY{n}{dev\PYZus{}min}\PY{p}{,} \PY{n}{dev\PYZus{}max}\PY{p}{,} \PY{n}{host\PYZus{}min}\PY{p}{,} \PY{n}{host\PYZus{}max}\PY{p}{]}\PY{p}{)}
 \PY{n}{ax\PYZus{}r}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{dev\PYZus{}axis}\PY{p}{,} \PY{n}{n\PYZus{}host}\PY{p}{(}\PY{n}{dev\PYZus{}axis}\PY{p}{,} \PY{n}{budget}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\PY{n}{ax\PYZus{}r}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of dev hours bought}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\PY{n}{ax\PYZus{}r}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of host hours bought}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{ax\PYZus{}r}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of dev bought}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{ax\PYZus{}r}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of host bought}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \PY{n}{ax\PYZus{}r}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Différente manière de dépenser le budget}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 
 \PY{n}{plt}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{im}\PY{p}{,}\PY{n}{ax}\PY{o}{=}\PY{n}{ax\PYZus{}l}\PY{p}{)}
@@ -532,7 +540,7 @@ dimensions}\label{repruxe9sentation-de-loptimisation-en-2-dimensions}}
 \end{tcolorbox}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_14_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -547,37 +555,59 @@ sur le graphe ci-dessus à droite. Nous utilisons l'API de SAGEMATH avec
 l'option sympy pour équition diophantienne.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{13}{\boxspacing}
+\prompt{In}{incolor}{208}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{solve}\PY{p}{(}\PY{p}{[}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{21}\PY{o}{/}\PY{l+m+mi}{4}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{p}{(}\PY{n}{t}\PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}\PY{o}{/}\PY{n}{s}\PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{l} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,}
-   \PY{p}{(}\PY{p}{(}\PY{l+m+mi}{7}\PY{o}{/}\PY{l+m+mi}{4}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{s}\PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{3}\PY{o}{/}\PY{l+m+mi}{4}\PY{p}{)}\PY{o}{/}\PY{n}{t}\PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{3}\PY{o}{/}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{l+m+mi}{20}\PY{o}{*}\PY{n}{l} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,}
-   \PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{s}\PY{o}{+}\PY{l+m+mi}{20}\PY{o}{*}\PY{n}{t} \PY{o}{\PYZhy{}} \PY{n}{budget} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{n}{s}\PY{p}{,}\PY{n}{t}\PY{p}{,}\PY{n}{l}\PY{p}{]}\PY{p}{,} \PY{n}{algorithm}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sympy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{s}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{l} \PY{o}{=} \PY{n}{var}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{s t l}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{209}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{n} \PY{o}{=} \PY{l+m+mi}{10000}  \PY{c+c1}{\PYZsh{} Ratio de retour sur investissement}
+\PY{n}{p} \PY{o}{=} \PY{l+m+mi}{50}  \PY{c+c1}{\PYZsh{} Ratio d’efficacité des dev / host}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{201}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{solutions} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{p}{[}\PY{p}{(}\PY{p}{(}\PY{n}{n}\PY{o}{/}\PY{n}{p}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{p}{(}\PY{n}{t}\PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{n}{p}\PY{o}{/}\PY{p}{(}\PY{n}{p}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{o}{/}\PY{n}{s}\PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{n}{p}\PY{o}{/}\PY{p}{(}\PY{n}{p}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{one\PYZus{}host\PYZus{}cost}\PY{o}{*}\PY{n}{l} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,}
+   \PY{p}{(}\PY{p}{(}\PY{n}{n}\PY{o}{*}\PY{n}{p}\PY{o}{/}\PY{p}{(}\PY{n}{p}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{s}\PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{/}\PY{p}{(}\PY{n}{p}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{o}{/}\PY{n}{t}\PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{/}\PY{p}{(}\PY{n}{p}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{one\PYZus{}dev\PYZus{}cost}\PY{o}{*}\PY{n}{l} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,}
+   \PY{p}{(}\PY{n}{one\PYZus{}host\PYZus{}cost}\PY{o}{*}\PY{n}{s}\PY{o}{+}\PY{n}{one\PYZus{}dev\PYZus{}cost}\PY{o}{*}\PY{n}{t} \PY{o}{\PYZhy{}} \PY{n}{budget} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{n}{s}\PY{p}{,}\PY{n}{t}\PY{p}{,}\PY{n}{l}\PY{p}{]}\PY{p}{,} \PY{n}{algorithm}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sympy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{210}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{revenues}\PY{p}{(}\PY{n}{solutions}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{n}{s}\PY{p}{]}\PY{p}{,} \PY{n}{solutions}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{n}{t}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{13}{\boxspacing}
+\prompt{Out}{outcolor}{210}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-[(1875/2, 125/4, 7*30**(3/4)/80)]
+100368.149862054
 \end{Verbatim}
 \end{tcolorbox}
         
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{15}{\boxspacing}
+\prompt{In}{incolor}{203}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{revenues}\PY{p}{(}\PY{l+m+mi}{1875}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{125}\PY{o}{/}\PY{l+m+mi}{4}\PY{p}{)}
+\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{nombre de dev:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{solutions}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{n}{s}\PY{p}{]}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{p}{)}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{nombre de host :}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{solutions}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{n}{t}\PY{p}{]}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
- 
-            
-\prompt{Out}{outcolor}{15}{}
-    
-    $\displaystyle \frac{875 \cdot 30^{\frac{3}{4}}}{4}$
 
-    
-
-    Ce qui équivaut à un bénéfice maximum de 2804, pour 75 heures de
-développement et 2,5
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{203}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+('nombre de dev:', 9.99607996863975, 'nombre de host :', 12.2500980007840)
+\end{Verbatim}
+\end{tcolorbox}
+        
+    Ce qui équivaut à un bénéfice maximum de 2804, pour 10 développeurs et
+12 serveurs
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}

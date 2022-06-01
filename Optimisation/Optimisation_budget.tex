@@ -366,7 +366,7 @@
 Projet}\label{multiplicateur-de-lagrange-pour-optimiser-le-dimensionnement-du-projet}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{11}{\boxspacing}
+\prompt{In}{incolor}{1}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
 \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
@@ -378,27 +378,27 @@ Projet}\label{multiplicateur-de-lagrange-pour-optimiser-le-dimensionnement-du-pr
 d'heures de machine chaque mois
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{186}{\boxspacing}
+\prompt{In}{incolor}{2}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{one\PYZus{}dev\PYZus{}cost} \PY{o}{=} \PY{l+m+mi}{4000}
-\PY{n}{one\PYZus{}host\PYZus{}cost} \PY{o}{=} \PY{l+m+mi}{100}
-\PY{n}{budget} \PY{o}{=} \PY{l+m+mi}{50000}
+\PY{n}{one\PYZus{}host\PYZus{}cost} \PY{o}{=} \PY{l+m+mi}{200}
+\PY{n}{budget} \PY{o}{=} \PY{l+m+mi}{15000}
 \PY{n}{nb\PYZus{}hosts} \PY{o}{=} \PY{n}{budget} \PY{o}{/} \PY{n}{one\PYZus{}host\PYZus{}cost} 
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{204}{\boxspacing}
+\prompt{In}{incolor}{3}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{n} \PY{o}{=} \PY{l+m+mi}{10000}  \PY{c+c1}{\PYZsh{} Ratio de retour sur investissement}
-\PY{n}{p} \PY{o}{=} \PY{l+m+mi}{50}  \PY{c+c1}{\PYZsh{} Ratio d’efficacité des dev / host}
+\PY{n}{n} \PY{o}{=} \PY{l+m+mi}{500} \PY{c+c1}{\PYZsh{} Coeff du retour sur investissement (x5)}
+\PY{n}{p} \PY{o}{=} \PY{l+m+mi}{5}  \PY{c+c1}{\PYZsh{} Coefficient d’efficacité des ventes entre dev / host}
 \end{Verbatim}
 \end{tcolorbox}
 
     Nos possibilités maximales sont
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{187}{\boxspacing}
+\prompt{In}{incolor}{4}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{host\PYZus{}min} \PY{o}{=} \PY{l+m+mi}{0}
 \PY{n}{host\PYZus{}max} \PY{o}{=} \PY{n}{budget} \PY{o}{/} \PY{n}{one\PYZus{}host\PYZus{}cost}
@@ -409,7 +409,7 @@ d'heures de machine chaque mois
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{188}{\boxspacing}
+\prompt{In}{incolor}{5}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{def} \PY{n+nf}{n\PYZus{}dev}\PY{p}{(}\PY{n}{n\PYZus{}host}\PY{p}{,} \PY{n}{budget}\PY{p}{)}\PY{p}{:}
     \PY{k}{return} \PY{p}{(}\PY{n}{budget} \PY{o}{\PYZhy{}} \PY{n}{one\PYZus{}host\PYZus{}cost} \PY{o}{*} \PY{n}{n\PYZus{}host}\PY{p}{)} \PY{o}{/} \PY{n}{one\PYZus{}dev\PYZus{}cost}
@@ -417,7 +417,7 @@ d'heures de machine chaque mois
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{189}{\boxspacing}
+\prompt{In}{incolor}{6}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{def} \PY{n+nf}{n\PYZus{}host}\PY{p}{(}\PY{n}{n\PYZus{}dev}\PY{p}{,} \PY{n}{budget}\PY{p}{)}\PY{p}{:}
     \PY{k}{return} \PY{p}{(}\PY{n}{budget} \PY{o}{\PYZhy{}} \PY{n}{one\PYZus{}dev\PYZus{}cost} \PY{o}{*} \PY{n}{n\PYZus{}dev}\PY{p}{)} \PY{o}{/} \PY{n}{one\PYZus{}host\PYZus{}cost}
@@ -427,7 +427,7 @@ d'heures de machine chaque mois
     Plotting les dépenses du budget sur une courbe
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{190}{\boxspacing}
+\prompt{In}{incolor}{7}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{dev\PYZus{}x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{n}{dev\PYZus{}min}\PY{p}{,} \PY{n}{dev\PYZus{}max}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
 \PY{n}{host\PYZus{}y} \PY{o}{=} \PY{n}{n\PYZus{}host}\PY{p}{(}\PY{n}{dev\PYZus{}x}\PY{p}{,} \PY{n}{budget}\PY{p}{)}
@@ -447,25 +447,25 @@ d'heures de machine chaque mois
     { \hspace*{\fill} \\}
     
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{191}{\boxspacing}
+\prompt{In}{incolor}{8}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Les revenus}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{205}{\boxspacing}
+\prompt{In}{incolor}{9}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{def} \PY{n+nf}{revenues}\PY{p}{(}\PY{n}{dev}\PY{p}{,} \PY{n}{host}\PY{p}{)}\PY{p}{:}
-    \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}Équation pragmatique qui exprime le bénéfice en }
-\PY{l+s+sd}{    fonction du nombre d’heures de développement}
-\PY{l+s+sd}{    et du nombre d’heure de serveur utiliser.\PYZdq{}\PYZdq{}\PYZdq{}}
+    \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}Équation pragmatique du marketing qui exprime le bénéfice en }
+\PY{l+s+sd}{    fonction du nombre de développeur}
+\PY{l+s+sd}{    et du nombre de serveur.\PYZdq{}\PYZdq{}\PYZdq{}}
     \PY{k}{return} \PY{n}{dev}\PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{p}{(}\PY{n}{p}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{/}\PY{n}{p}\PY{p}{)} \PY{o}{*} \PY{n}{host}\PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{/}\PY{n}{p}\PY{p}{)} \PY{o}{*} \PY{n}{n}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{206}{\boxspacing}
+\prompt{In}{incolor}{10}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{from} \PY{n+nn}{mpl\PYZus{}toolkits}\PY{n+nn}{.}\PY{n+nn}{mplot3d} \PY{k+kn}{import} \PY{n}{Axes3D}
 \PY{n}{dev\PYZus{}axis} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{n}{dev\PYZus{}min}\PY{p}{,} \PY{n}{dev\PYZus{}max}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
@@ -487,7 +487,7 @@ d'heures de machine chaque mois
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-<ipython-input-206-9c6593fc3498>:7: MatplotlibDeprecationWarning: Calling gca()
+<ipython-input-10-9c6593fc3498>:7: MatplotlibDeprecationWarning: Calling gca()
 with keyword arguments was deprecated in Matplotlib 3.4. Starting two minor
 releases later, gca() will take no keyword arguments. The gca() function should
 only be used to get the current axes, or if no axes exist, create new axes with
@@ -506,7 +506,7 @@ plt.axes() or plt.subplot().
 dimensions}\label{repruxe9sentation-de-loptimisation-en-2-dimensions}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{207}{\boxspacing}
+\prompt{In}{incolor}{11}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{fig}\PY{p}{,} \PY{p}{(}\PY{n}{ax\PYZus{}l}\PY{p}{,} \PY{n}{ax\PYZus{}r}\PY{p}{)} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
 
@@ -555,22 +555,14 @@ sur le graphe ci-dessus à droite. Nous utilisons l'API de SAGEMATH avec
 l'option sympy pour équition diophantienne.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{208}{\boxspacing}
+\prompt{In}{incolor}{12}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{s}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{l} \PY{o}{=} \PY{n}{var}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{s t l}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{209}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{n} \PY{o}{=} \PY{l+m+mi}{10000}  \PY{c+c1}{\PYZsh{} Ratio de retour sur investissement}
-\PY{n}{p} \PY{o}{=} \PY{l+m+mi}{50}  \PY{c+c1}{\PYZsh{} Ratio d’efficacité des dev / host}
-\end{Verbatim}
-\end{tcolorbox}
-
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{201}{\boxspacing}
+\prompt{In}{incolor}{13}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{solutions} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{p}{[}\PY{p}{(}\PY{p}{(}\PY{n}{n}\PY{o}{/}\PY{n}{p}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{p}{(}\PY{n}{t}\PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{n}{p}\PY{o}{/}\PY{p}{(}\PY{n}{p}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{o}{/}\PY{n}{s}\PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{n}{p}\PY{o}{/}\PY{p}{(}\PY{n}{p}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{one\PYZus{}host\PYZus{}cost}\PY{o}{*}\PY{n}{l} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,}
    \PY{p}{(}\PY{p}{(}\PY{n}{n}\PY{o}{*}\PY{n}{p}\PY{o}{/}\PY{p}{(}\PY{n}{p}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{s}\PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{/}\PY{p}{(}\PY{n}{p}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{o}{/}\PY{n}{t}\PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{/}\PY{p}{(}\PY{n}{p}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{one\PYZus{}dev\PYZus{}cost}\PY{o}{*}\PY{n}{l} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,}
@@ -579,35 +571,35 @@ l'option sympy pour équition diophantienne.
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{210}{\boxspacing}
+\prompt{In}{incolor}{14}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{revenues}\PY{p}{(}\PY{n}{solutions}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{n}{s}\PY{p}{]}\PY{p}{,} \PY{n}{solutions}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{n}{t}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{210}{\boxspacing}
+\prompt{Out}{outcolor}{14}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-100368.149862054
+5303.62216314408
 \end{Verbatim}
 \end{tcolorbox}
         
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{203}{\boxspacing}
+\prompt{In}{incolor}{15}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{nombre de dev:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{solutions}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{n}{s}\PY{p}{]}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{p}{)}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{nombre de host :}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{solutions}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{n}{t}\PY{p}{]}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{p}{)}
+\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{nombre de serveur:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{solutions}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{n}{s}\PY{p}{]}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{p}{)}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{nombre de dev :}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{solutions}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{n}{t}\PY{p}{]}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{203}{\boxspacing}
+\prompt{Out}{outcolor}{15}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-('nombre de dev:', 9.99607996863975, 'nombre de host :', 12.2500980007840)
+('nombre de serveur:', 14.5161290322581, 'nombre de dev :', 3.02419354838710)
 \end{Verbatim}
 \end{tcolorbox}
         
-    Ce qui équivaut à un bénéfice maximum de 2804, pour 10 développeurs et
-12 serveurs
+    Ce qui équivaut à un bénéfice maximum de 5303/mois, pour 3 développeurs
+et 14 serveurs
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}

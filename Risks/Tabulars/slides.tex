@@ -1,0 +1,65 @@
+%Fichier d’Analyse des risques avec plan d’action de mitigation des risques identifiés pour le projet
+
+\documentclass[12pt, landscape]{article}
+\usepackage{fullpage}
+\usepackage{url}
+\usepackage[hidelinks]{ hyperref}
+\usepackage{cite}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{lscape}
+\usepackage{rotating}
+\usepackage[nottoc]{tocbibind}
+\usepackage{epstopdf}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{hhline}
+\usepackage{stackengine}
+\setstackEOL{\\}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{mathptmx}
+%\usepackage[upright]{fourier} 
+\usepackage[usenames,dvipsnames,table]{xcolor}
+\usepackage{tkz-kiviat,numprint} 
+\usetikzlibrary{arrows}
+%
+%\renewcommand{\rmdefault}{ptm}
+%\title{Analyse de risque}
+%\author{Romain BOYRIE}
+%\date{$10$ Juin $2022$} 
+\begin{document}
+
+%\maketitle
+%
+%\setcounter{tocdepth}{2} 
+%
+%\tableofcontents 
+%
+%\listoffigures
+%
+%\listoftables 
+%
+%\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{empty}
+\input{genRisks.tex}
+\input{descRisks.tex}
+
+\newpage
+
+\input{initRisksMatrix.tex}
+\input{finalRisksMatrix.tex}
+\input{kiviatDiagram.tex}
+\input{prevRisks.tex}
+\input{tasks.tex}
+\input{userStories.tex}
+
+\input{gantt.tex}
+
+
+
+\end{document}
